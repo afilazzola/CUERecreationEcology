@@ -62,23 +62,28 @@ makePolygonDF <- function(x){
 }
 
 ## See overlap with conservation authority properties
-polyMapbox <- lapply(polyFiles[,"bounds"], makePolygon)
+polyMapbox <- lapply(polyFiles[,"bounds"], makePolygonDF)
 allMapbox <- do.call(rbind, polyMapbox)
 allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
+## export instersection for review
+st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
+
 ## summary based on intersection
 summaryMapbox <- intersecMapboxCA %>% 
                     group_by(Name) %>% 
-                    summarize(activity = median(activity_index_total))
+                    summarize(activity = sum(activity_index_total))
                     
 plot(summaryMapbox)
 
 Mapboxtiming <- intersecMapboxCA %>% 
-  mutate(timeframe = ifelse(agg_time_period %in% 6:7, "peak-day",
-                            ifelse(agg_time_period %in% c(4,8,9),"off-hours","closed"))) %>% 
-  group_by(Name,timeframe) %>% 
-  summarize(activity = median(activity_index_total))
+  mutate(date=  as.Date(paste0(month,"-01"))) %>% 
+  mutate(month = as.numeric(format(date, format = "%m"))) %>% 
+  mutate(start_h2 =  agg_time_period*2) %>% 
+  group_by(Name, month, start_h2) %>% 
+  summarize(activity = sum(activity_index_total))
+
 
 ######## Load in reservation data
 reservations <- read.csv("data//ConservationHalton_ParkReservations.csv")
@@ -93,8 +98,9 @@ StudyReservations <- StudyReservations %>%
                                month = as.numeric(format(date, format = "%m")),
                                day = as.numeric(format(date, format = "%d")))%>% 
                       mutate(time = as.POSIXct(Start.Time, format="%H:%M")) %>% 
-                      mutate(hour =  as.numeric(format(time, "%H")))
-             
+                      mutate(hour =  as.numeric(format(time, "%H"))) %>% 
+                      mutate(h2window = cut(hour, breaks = c(8,10,12,14,16,18,20))) %>%  ## create two h windows to match Mapbox
+                      mutate(start_h2 = as.numeric(h2window)*2+6)
 ### Summarize the reservation data for daily
 parkAvgs <- StudyReservations %>% 
     filter(year == 2020) %>% 
@@ -135,15 +141,38 @@ ggplot(joinData, aes(x=trailDens, y=activity)) + geom_point() + ylim(0.015,0.045
 
 
 ## mapbox relationship with reservation data
-parkPatternsLong <- parkPatterns %>% gather(timeframe, reservations, 2:5)
+parkPatternsLong <- StudyReservations %>% 
+                      filter(month %in% 6:8) %>% 
+                      group_by(Arrival.Location, start_h2, month) %>% 
+                      summarize(nReserve=sum(People))
+                        
 
 reservationMapbox <- Mapboxtiming %>% data.frame() %>% 
-  select(Arrival.Location = Name, timeframe, activity) %>% 
+  select(Arrival.Location = Name, month, start_h2, activity) %>% 
   left_join(parkPatternsLong) %>% 
-  left_join(studyAreas %>% select(Arrival.Location = Name, SHAPE_Area))
+  left_join(studyAreas %>% select(Arrival.Location = Name, SHAPE_Area)) %>% 
+  filter(!is.na(nReserve))
 
 
-ggplot(reservationMapbox, aes(x=reservations/SHAPE_Area, y=activity, color=timeframe)) + 
-  geom_point(size=4) + ylim(0.02,0.065) +
-  geom_text(aes(label=Arrival.Location),nudge_y = 0.002, nudge_x = 0.2) +
+ggplot(reservationMapbox, aes(x=nReserve, y=activity, color=Arrival.Location, shape=as.factor(month))) + 
+  geom_point(size=4) + 
+  geom_text(aes(label=as.character(start_h2)),nudge_y = 0.5, nudge_x = 100) +
  theme_classic()
+
+
+
+######## Take a look at biodiversity data
+
+birds <- read.csv("data//biodiversityData//CH_FBMP birds Feb 12 2021.csv", stringsAsFactors = F)
+
+avgBird <- birds %>%
+              group_by(Year, Site) %>% 
+              filter(Year> 2009) %>% 
+              mutate(Number = as.numeric(Number)) %>% 
+              summarize(nRich = length(unique(Species.Name)), abd = sum(Number, na.rm=T), nInstances  = length(unique(Date))) %>% 
+              mutate(adjAbd = abd/nInstances)
+
+ggplot(avgBird %>%  filter(Site %in% Mapboxtiming$Name), aes(x=Year, y= nRich, color=Site)) + 
+  geom_smooth(se=F)
+
+
