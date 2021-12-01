@@ -97,7 +97,7 @@ StudyReservations <- StudyReservations %>%
                         mutate(year = as.numeric(format(date, format = "%Y")),
                                month = as.numeric(format(date, format = "%m")),
                                day = as.numeric(format(date, format = "%d")))%>% 
-                      mutate(time = as.POSIXct(Start.Time, format="%H:%M")) %>% 
+                      mutate(time = as.POSIXct(Check.in.Time, format="%H:%M")) %>% 
                       mutate(hour =  as.numeric(format(time, "%H"))) %>% 
                       mutate(h2window = cut(hour, breaks = c(8,10,12,14,16,18,20))) %>%  ## create two h windows to match Mapbox
                       mutate(start_h2 = as.numeric(h2window)*2+6)
@@ -150,7 +150,7 @@ gridExtra::grid.arrange(plot1, plot2, ncol=2)
 parkPatternsLong <- StudyReservations %>% 
                       filter(month %in% 6:8) %>% 
                       group_by(Arrival.Location, start_h2, month) %>% 
-                      summarize(nReserve=sum(People))
+                      summarize(nReserve=sum(Adults+Seniors))
                         
 
 reservationMapbox <- Mapboxtiming %>% data.frame() %>% 
@@ -160,11 +160,14 @@ reservationMapbox <- Mapboxtiming %>% data.frame() %>%
   filter(!is.na(nReserve))
 
 
-ggplot(reservationMapbox, aes(x=nReserve, y=activity, color=Arrival.Location, shape=as.factor(month))) + 
-  geom_point(size=4) + 
-  geom_text(aes(label=as.character(start_h2)),nudge_y = 0.5, nudge_x = 100) +
- theme_classic()
 
+ggplot(reservationMapbox, aes(x=nReserve, y=activity, color=as.factor(month),
+                              label=as.character(start_h2))) + 
+  geom_point(size=4) + 
+  geom_text(nudge_y = 0.5) +
+ theme_classic() + facet_wrap(~Arrival.Location, scales="free_x") +
+  scale_colour_manual(values=RColorBrewer::brewer.pal(3, "Set2")) +
+  ylab("Mapbox Activity") +  xlab("Number of Reservations")
 
 
 ######## Take a look at biodiversity data
