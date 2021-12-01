@@ -68,7 +68,7 @@ allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
 ## export instersection for review
-st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
+# st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
 
 ## summary based on intersection
 summaryMapbox <- intersecMapboxCA %>% 
@@ -125,20 +125,26 @@ trailsLands <- st_intersection(trails, studyAreas)
 
 ### Calculate length per CA area
 trailSummary <- trailsLands %>% group_by(Name) %>% summarize(trailLength = sum(ShapeSTLen), 
-                                             trailDens=trailLength/unique(SHAPE_Leng))
+                                             trailDens=trailLength/log(unique(SHAPE_Leng)),
+                                             parkArea = unique(SHAPE_Area))
 
 
 ## Trail relationship with mapbox
 joinData <- merge(data.frame(trailSummary), data.frame(summaryMapbox), by="Name", all=T)
 
 
-ggplot(joinData, aes(x=trailLength, y=activity)) + geom_point() + ylim(0.015,0.045) + theme_classic() +
-  geom_point(size=4) + xlim(-500,28000) + 
-  geom_text(aes(label=Name),nudge_y = 0.002, nudge_x = 100) 
-ggplot(joinData, aes(x=trailDens, y=activity)) + geom_point() + ylim(0.015,0.045) + theme_classic() +
-  geom_point(size=4) + xlim(0,1.4) + 
-  geom_text(aes(label=Name),nudge_y = 0.002, nudge_x = 0.05) 
+plot1 <- ggplot(joinData, aes(x=trailLength, y=activity/log(parkArea), label=Name)) +theme_classic() +
+  geom_point(size=4) + ylab("Mapbox Activity Density") + xlab("Sum Trail Length (m)") +
+  geom_text(nudge_y = 0.5, nudge_x = 100) 
+plot1
 
+plot2 <- ggplot(joinData, aes(x=trailDens, y=activity/log(parkArea))) + geom_point() +  theme_classic() +
+  geom_point(size=4) + 
+  geom_text(aes(label=Name),nudge_y = 0.5, nudge_x = 0.05)  +
+  xlab("Trail Density")+ ylab("Mapbox Activity Density") 
+plot2
+
+gridExtra::grid.arrange(plot1, plot2, ncol=2)
 
 ## mapbox relationship with reservation data
 parkPatternsLong <- StudyReservations %>% 
