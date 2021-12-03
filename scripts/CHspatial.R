@@ -172,7 +172,8 @@ ggplot(reservationMapbox, aes(x=nReserve, y=activity, color=as.factor(month),
 
 ######## Take a look at biodiversity data
 
-birds <- read.csv("data//biodiversityData//CH_FBMP birds Feb 12 2021.csv", stringsAsFactors = F)
+birds <- read.csv("data//biodiversityData//CH_FBMP birds Feb 12 2021.csv", stringsAsFactors = F) %>% 
+            select(Time:Comments)
 
 avgBird <- birds %>%
               group_by(Year, Site) %>% 
@@ -184,4 +185,21 @@ avgBird <- birds %>%
 ggplot(avgBird %>%  filter(Site %in% Mapboxtiming$Name), aes(x=Year, y= nRich, color=Site)) + 
   geom_smooth(se=F)
 
+### Average abundances
+longtermBird <- avgBird %>% group_by(Name=Site) %>% 
+              summarize(meanAbd = mean(abd), meanRich = mean(nRich), 
+                        changeAbd = sum(diff(abd)), changeRich = sum(diff(nRich)) )
 
+
+## Join with mapbox
+birdMapbox <- summaryMapbox %>% left_join(longtermBird) %>% 
+                gather(metric, value, 4:7)
+
+ggplot(birdMapbox, aes(x=activity, y=value)) + geom_point()  + 
+  facet_wrap(~metric) + theme_classic() + geom_smooth(method="lm")
+  
+  
+  
+  
+  
+  
