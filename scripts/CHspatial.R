@@ -82,7 +82,12 @@ Mapboxtiming <- intersecMapboxCA %>%
   mutate(month = as.numeric(format(date, format = "%m"))) %>% 
   mutate(start_h2 =  agg_time_period*2) %>% 
   group_by(Name, month, start_h2) %>% 
-  summarize(activity = sum(activity_index_total))
+  summarize(activity = sum(activity_index_total), nPolys = length(activity_index_total))
+
+
+MapboxDetails <-  studyAreas %>% select(Name, Area_Type, Managed, perimeter = SHAPE_Leng, area = SHAPE_Area) %>% 
+      mutate(logArea = log(area)) %>% 
+      st_join(Mapboxtiming)
 
 
 ######## Load in reservation data
@@ -185,6 +190,19 @@ avgBird <- birds %>%
 ggplot(avgBird %>%  filter(Site %in% Mapboxtiming$Name), aes(x=Year, y= nRich, color=Site)) + 
   geom_smooth(se=F)
 
+## save birds as spatial
+birdGPS <- birds
+coordinates(birdGPS) <- ~Easting+Northing
+proj4string(birdGPS) <- "+proj=utm +zone=17 +datum=WGS84"
+st_write(st_as_sf(birdGPS), dsn="data", layer="BirdLocations", driver="ESRI Shapefile")
+
+avgActivity <- MapboxDetails %>% 
+                rename(Name= Name.x) %>% 
+                mutate(activityDens = activity/logArea) %>% 
+                group_by(Name) %>% 
+                summarize(dailyActivity = sum(activityDens)) %>% 
+                data.frame()
+
 ### Average abundances
 longtermBird <- avgBird %>% group_by(Name=Site) %>% 
               summarize(meanAbd = mean(abd), meanRich = mean(nRich), 
@@ -196,10 +214,14 @@ birdMapbox <- summaryMapbox %>% left_join(longtermBird) %>%
                 gather(metric, value, 4:7)
 
 ggplot(birdMapbox, aes(x=activity, y=value)) + geom_point()  + 
-  facet_wrap(~metric) + theme_classic() + geom_smooth(method="lm")
+  facet_wrap(~metric, scales="free_y") + theme_classic() + geom_smooth(method="lm")
   
   
-  
-  
+## check linear models
+  birdMapbox %>%
+    group_by(metric) %>%
+    do(fit = broom::tidy(lm(value ~ activity,
+                            data = .))) %>%
+    unnest(fit)
   
   
