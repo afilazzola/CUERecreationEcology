@@ -50,7 +50,7 @@ studyAreas <- lands[lands$Name %in% out$Name,]
 
 
 #### Used super computer  to find relevant polygons
-polyFiles <- list.files("out//polygons", full.names = T) %>%  map_df(~read.csv(.))
+polyFiles <- list.files("out//polygons", full.names = T) %>%  map_df(~read.csv(., stringsAsFactors = F))
 
 ### Function to convert bounds to polygon
 makePolygonDF <- function(x){
@@ -63,7 +63,7 @@ makePolygonDF <- function(x){
 
 ## See overlap with conservation authority properties
 polyMapbox <- lapply(polyFiles[,"bounds"], makePolygonDF)
-allMapbox <- do.call(rbind, polyMapbox)
+allMapbox <- bind_rows(polyMapbox)
 allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
