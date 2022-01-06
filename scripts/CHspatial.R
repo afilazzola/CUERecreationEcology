@@ -84,6 +84,9 @@ Mapboxtiming <- intersecMapboxCA %>%
   group_by(Name, month, start_h2) %>% 
   summarize(activity = sum(activity_index_total), nPolys = length(activity_index_total))
 
+## Save
+mapboxTimingOut <- Mapboxtiming %>% data.frame() %>% dplyr::select(-geometry) 
+write.csv(mapboxTimingOut, "out//data//MapboxTiming.csv", row.names=F)
 
 MapboxDetails <-  studyAreas %>% select(Name, Area_Type, Managed, perimeter = SHAPE_Leng, area = SHAPE_Area) %>% 
       mutate(logArea = log(area)) %>% 

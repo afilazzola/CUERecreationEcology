@@ -1,0 +1,385 @@
+"Name","month","start_h2","activity","nPolys"
+"Crawford Lake",6,0,0.067014,2
+"Crawford Lake",6,10,0.301905,8
+"Crawford Lake",6,12,0.258998,8
+"Crawford Lake",6,14,0.159479,4
+"Crawford Lake",6,16,0.246006,7
+"Crawford Lake",6,18,0.11535,5
+"Crawford Lake",6,20,0.022246,1
+"Crawford Lake",7,8,0.019776,1
+"Crawford Lake",7,10,0.06388,2
+"Crawford Lake",7,12,0.128565,8
+"Crawford Lake",7,14,0.177882,7
+"Crawford Lake",7,16,0.110149,3
+"Crawford Lake",7,18,0.056269,2
+"Crawford Lake",8,10,0.210596,6
+"Crawford Lake",8,12,0.414239,8
+"Crawford Lake",8,14,0.298921,7
+"Crawford Lake",8,16,0.017664,2
+"Crawford Lake",8,18,0.056595,4
+"Glenorchy",6,0,0.250828,3
+"Glenorchy",6,2,0.04025,2
+"Glenorchy",6,4,0.090341,6
+"Glenorchy",6,6,0.551192,17
+"Glenorchy",6,8,0.946413,24
+"Glenorchy",6,10,0.713109,28
+"Glenorchy",6,12,1.283856,33
+"Glenorchy",6,14,1.949431,46
+"Glenorchy",6,16,2.307937,56
+"Glenorchy",6,18,1.789232,40
+"Glenorchy",6,20,0.750822,16
+"Glenorchy",6,22,0.663773,17
+"Glenorchy",7,0,0.052769,4
+"Glenorchy",7,2,0.216425,4
+"Glenorchy",7,4,0.014989,2
+"Glenorchy",7,6,0.593038,29
+"Glenorchy",7,8,1.325247,36
+"Glenorchy",7,10,1.535032,34
+"Glenorchy",7,12,1.761345,43
+"Glenorchy",7,14,1.238465,38
+"Glenorchy",7,16,1.317553,41
+"Glenorchy",7,18,1.277995,40
+"Glenorchy",7,20,1.24641,29
+"Glenorchy",7,22,0.239157,12
+"Glenorchy",8,0,0.271797,10
+"Glenorchy",8,4,0.135653,8
+"Glenorchy",8,6,0.531511,20
+"Glenorchy",8,8,0.483987,23
+"Glenorchy",8,10,0.975729,34
+"Glenorchy",8,12,0.972923,36
+"Glenorchy",8,14,1.623511,49
+"Glenorchy",8,16,1.487829,37
+"Glenorchy",8,18,1.235011,35
+"Glenorchy",8,20,0.506555,22
+"Glenorchy",8,22,0.422319,18
+"Hilton Falls",6,0,0.111609,4
+"Hilton Falls",6,2,0.105775,4
+"Hilton Falls",6,4,0.18449,5
+"Hilton Falls",6,6,1.17403,27
+"Hilton Falls",6,8,3.79824,82
+"Hilton Falls",6,10,7.198774,181
+"Hilton Falls",6,12,8.46951,158
+"Hilton Falls",6,14,9.187057,183
+"Hilton Falls",6,16,6.790778,162
+"Hilton Falls",6,18,6.416065,156
+"Hilton Falls",6,20,2.614738,73
+"Hilton Falls",6,22,0.268079,9
+"Hilton Falls",7,0,0.050167,4
+"Hilton Falls",7,2,0.033612,2
+"Hilton Falls",7,4,0.104045,3
+"Hilton Falls",7,6,0.48521,21
+"Hilton Falls",7,8,2.676417,80
+"Hilton Falls",7,10,6.013409,157
+"Hilton Falls",7,12,5.9192,129
+"Hilton Falls",7,14,4.750372,105
+"Hilton Falls",7,16,5.600446,120
+"Hilton Falls",7,18,3.33704,119
+"Hilton Falls",7,20,1.872864,49
+"Hilton Falls",7,22,0.411057,12
+"Hilton Falls",8,0,0.083623,4
+"Hilton Falls",8,2,0.06178,4
+"Hilton Falls",8,4,0.072375,5
+"Hilton Falls",8,6,0.53834,18
+"Hilton Falls",8,8,2.566191,76
+"Hilton Falls",8,10,5.948878,141
+"Hilton Falls",8,12,4.878797,138
+"Hilton Falls",8,14,5.432504,128
+"Hilton Falls",8,16,3.296763,104
+"Hilton Falls",8,18,2.64586,91
+"Hilton Falls",8,20,1.233843,46
+"Hilton Falls",8,22,0.184912,5
+"Kerncliff",6,6,0.05432,1
+"Kerncliff",6,8,0,1
+"Kerncliff",6,10,0.138857,1
+"Kerncliff",6,12,0.023418,1
+"Kerncliff",6,18,0,1
+"Kerncliff",6,20,0.007154,1
+"Kerncliff",7,8,0.090022,1
+"Kerncliff",7,12,0.006599,1
+"Kerncliff",7,14,0.017196,2
+"Kerncliff",7,16,0.054603,1
+"Kerncliff",7,18,0,1
+"Kerncliff",8,10,0,1
+"Kerncliff",8,12,0.012181,1
+"Kerncliff",8,14,0.002076,1
+"Kilbride",6,4,0.02091,1
+"Kilbride",6,8,0.281063,6
+"Kilbride",6,10,0.088197,5
+"Kilbride",6,12,0.048625,3
+"Kilbride",6,14,0.317634,10
+"Kilbride",6,16,0.082846,5
+"Kilbride",6,18,0.296471,6
+"Kilbride",6,20,0.042617,3
+"Kilbride",7,6,0.033301,2
+"Kilbride",7,8,0.236924,8
+"Kilbride",7,10,0.748065,20
+"Kilbride",7,12,0.127288,6
+"Kilbride",7,14,0.329335,9
+"Kilbride",7,16,0.186815,4
+"Kilbride",7,18,0.186562,6
+"Kilbride",7,20,0.114395,2
+"Kilbride",7,22,0.071923,2
+"Kilbride",8,6,0.023192,3
+"Kilbride",8,8,0.183923,9
+"Kilbride",8,10,0.543876,10
+"Kilbride",8,12,0.251895,6
+"Kilbride",8,14,0.224069,5
+"Kilbride",8,16,0.006241,2
+"Kilbride",8,18,0.060626,5
+"Kilbride",8,22,0.037394,1
+"Moffat-Badenoch Swamp",6,0,0.075281,1
+"Moffat-Badenoch Swamp",6,2,0.036178,1
+"Moffat-Badenoch Swamp",6,4,0.000504,1
+"Moffat-Badenoch Swamp",6,6,0.085625,1
+"Moffat-Badenoch Swamp",6,8,0.117686,2
+"Moffat-Badenoch Swamp",6,10,0.077933,1
+"Moffat-Badenoch Swamp",6,12,0.111704,1
+"Moffat-Badenoch Swamp",6,14,0.395583,3
+"Moffat-Badenoch Swamp",6,16,0.287941,2
+"Moffat-Badenoch Swamp",6,18,0.116816,2
+"Moffat-Badenoch Swamp",6,20,0.068553,1
+"Moffat-Badenoch Swamp",6,22,0.074626,1
+"Moffat-Badenoch Swamp",7,0,0.034974,1
+"Moffat-Badenoch Swamp",7,4,0.00875,1
+"Moffat-Badenoch Swamp",7,6,0.094199,2
+"Moffat-Badenoch Swamp",7,8,0.155504,2
+"Moffat-Badenoch Swamp",7,10,0.157613,1
+"Moffat-Badenoch Swamp",7,12,0.075515,1
+"Moffat-Badenoch Swamp",7,14,0.083464,1
+"Moffat-Badenoch Swamp",7,16,0.453661,3
+"Moffat-Badenoch Swamp",7,18,0.102141,2
+"Moffat-Badenoch Swamp",7,22,0.025329,1
+"Moffat-Badenoch Swamp",8,2,0,1
+"Moffat-Badenoch Swamp",8,6,0.086923,2
+"Moffat-Badenoch Swamp",8,8,0.100004,1
+"Moffat-Badenoch Swamp",8,10,0.219949,2
+"Moffat-Badenoch Swamp",8,12,0.298554,2
+"Moffat-Badenoch Swamp",8,14,0.286356,2
+"Moffat-Badenoch Swamp",8,16,0.223118,2
+"Moffat-Badenoch Swamp",8,18,0.199201,2
+"Moffat-Badenoch Swamp",8,20,0.049361,2
+"Moffat-Badenoch Swamp",8,22,0.039533,1
+"Mountsberg",6,0,0.679568,33
+"Mountsberg",6,2,0.748339,21
+"Mountsberg",6,4,0.77138,32
+"Mountsberg",6,6,2.165824,42
+"Mountsberg",6,8,3.051833,51
+"Mountsberg",6,10,3.728096,69
+"Mountsberg",6,12,5.415283,81
+"Mountsberg",6,14,5.644394,78
+"Mountsberg",6,16,4.665889,73
+"Mountsberg",6,18,4.164679,72
+"Mountsberg",6,20,2.489912,52
+"Mountsberg",6,22,1.463258,42
+"Mountsberg",7,0,0.293872,19
+"Mountsberg",7,2,0.273747,13
+"Mountsberg",7,4,0.416825,18
+"Mountsberg",7,6,2.371072,51
+"Mountsberg",7,8,3.867537,92
+"Mountsberg",7,10,4.827462,76
+"Mountsberg",7,12,4.72455,73
+"Mountsberg",7,14,3.833635,55
+"Mountsberg",7,16,4.93684,81
+"Mountsberg",7,18,3.438571,69
+"Mountsberg",7,20,2.012688,49
+"Mountsberg",7,22,1.27258,36
+"Mountsberg",8,0,0.538328,28
+"Mountsberg",8,2,0.218131,12
+"Mountsberg",8,4,0.395878,17
+"Mountsberg",8,6,1.943796,52
+"Mountsberg",8,8,3.041176,66
+"Mountsberg",8,10,4.579889,82
+"Mountsberg",8,12,6.297261,86
+"Mountsberg",8,14,5.723756,80
+"Mountsberg",8,16,5.456625,76
+"Mountsberg",8,18,4.490152,69
+"Mountsberg",8,20,2.595502,46
+"Mountsberg",8,22,1.215795,36
+"Ontario Heritage Trust",6,0,0.067014,2
+"Ontario Heritage Trust",6,2,0.044473,1
+"Ontario Heritage Trust",6,4,0,1
+"Ontario Heritage Trust",6,6,0.037151,1
+"Ontario Heritage Trust",6,8,0.12907,5
+"Ontario Heritage Trust",6,10,0.218318,6
+"Ontario Heritage Trust",6,12,0.399991,12
+"Ontario Heritage Trust",6,14,0.354487,11
+"Ontario Heritage Trust",6,16,0.165507,9
+"Ontario Heritage Trust",6,18,0.238796,7
+"Ontario Heritage Trust",6,20,0.178418,5
+"Ontario Heritage Trust",6,22,0.01639,4
+"Ontario Heritage Trust",7,0,0.0853,1
+"Ontario Heritage Trust",7,4,0.001148,1
+"Ontario Heritage Trust",7,6,0,3
+"Ontario Heritage Trust",7,8,0.289117,12
+"Ontario Heritage Trust",7,10,0.63524,15
+"Ontario Heritage Trust",7,12,0.621468,15
+"Ontario Heritage Trust",7,14,0.25204,8
+"Ontario Heritage Trust",7,16,0.180086,7
+"Ontario Heritage Trust",7,18,0.153492,6
+"Ontario Heritage Trust",7,22,0.058395,2
+"Ontario Heritage Trust",8,0,0,1
+"Ontario Heritage Trust",8,2,0.030987,1
+"Ontario Heritage Trust",8,4,0.042227,1
+"Ontario Heritage Trust",8,6,0.039039,1
+"Ontario Heritage Trust",8,8,0.198841,6
+"Ontario Heritage Trust",8,10,0.234619,7
+"Ontario Heritage Trust",8,12,0.113554,5
+"Ontario Heritage Trust",8,14,0.365848,9
+"Ontario Heritage Trust",8,16,0.097605,5
+"Ontario Heritage Trust",8,18,0.240594,8
+"Ontario Heritage Trust",8,20,0,1
+"Ontario Heritage Trust",8,22,0,1
+"Rattlesnake Point",6,0,0.006963,1
+"Rattlesnake Point",6,4,0.039134,1
+"Rattlesnake Point",6,6,0.025201,2
+"Rattlesnake Point",6,8,0.743299,18
+"Rattlesnake Point",6,10,1.660324,54
+"Rattlesnake Point",6,12,1.675698,45
+"Rattlesnake Point",6,14,2.392245,61
+"Rattlesnake Point",6,16,2.404682,59
+"Rattlesnake Point",6,18,1.298647,37
+"Rattlesnake Point",6,20,0.246466,10
+"Rattlesnake Point",7,6,0.059575,4
+"Rattlesnake Point",7,8,0.773236,24
+"Rattlesnake Point",7,10,2.703909,58
+"Rattlesnake Point",7,12,2.516972,48
+"Rattlesnake Point",7,14,2.147055,48
+"Rattlesnake Point",7,16,1.570335,45
+"Rattlesnake Point",7,18,2.264678,38
+"Rattlesnake Point",7,20,0.624124,17
+"Rattlesnake Point",7,22,0.056811,2
+"Rattlesnake Point",8,0,0.051709,1
+"Rattlesnake Point",8,4,0.012221,1
+"Rattlesnake Point",8,6,0.020537,1
+"Rattlesnake Point",8,8,0.46453,19
+"Rattlesnake Point",8,10,1.68385,53
+"Rattlesnake Point",8,12,1.09077,39
+"Rattlesnake Point",8,14,1.038297,37
+"Rattlesnake Point",8,16,1.167048,42
+"Rattlesnake Point",8,18,0.655533,32
+"Rattlesnake Point",8,20,0.078268,8
+"Rattlesnake Point",8,22,0.010984,1
+"Robert Edmondson",6,6,0.000966,1
+"Robert Edmondson",6,8,0.091295,5
+"Robert Edmondson",6,10,0.161779,6
+"Robert Edmondson",6,12,0.333662,9
+"Robert Edmondson",6,14,0.089788,3
+"Robert Edmondson",6,16,0.092931,3
+"Robert Edmondson",6,18,0.03251,1
+"Robert Edmondson",6,20,0.033247,1
+"Robert Edmondson",6,22,0,1
+"Robert Edmondson",7,4,0.012494,1
+"Robert Edmondson",7,6,0.105129,4
+"Robert Edmondson",7,8,0.033814,2
+"Robert Edmondson",7,10,0.301754,8
+"Robert Edmondson",7,12,0.025803,2
+"Robert Edmondson",7,14,0.033263,1
+"Robert Edmondson",7,16,0.012166,1
+"Robert Edmondson",7,18,0.007784,1
+"Robert Edmondson",7,20,0.057279,2
+"Robert Edmondson",8,4,0.017946,1
+"Robert Edmondson",8,6,0.074316,2
+"Robert Edmondson",8,8,0.018598,2
+"Robert Edmondson",8,10,0.034944,2
+"Robert Edmondson",8,12,0.262462,12
+"Robert Edmondson",8,14,0.085725,6
+"Robert Edmondson",8,16,0.047991,4
+"Robert Edmondson",8,18,0.028722,5
+"Robert Edmondson",8,20,0.04251,2
+"Robert Edmondson",8,22,0.01847,1
+"Shanahan",6,8,0.071437,1
+"Shanahan",7,6,0.0183,1
+"Shanahan",7,10,0.094457,1
+"Shanahan",7,20,0.038826,1
+"Shanahan",8,6,0.039589,1
+"Shanahan",8,8,0.018598,1
+"Speyside",6,4,0,1
+"Speyside",6,6,0.014433,1
+"Speyside",6,8,0.065287,3
+"Speyside",6,10,0.095135,2
+"Speyside",6,12,0.078286,5
+"Speyside",6,14,0.23923,7
+"Speyside",6,16,0.100712,7
+"Speyside",6,18,0.095073,1
+"Speyside",6,20,0.07851,2
+"Speyside",6,22,0.018144,1
+"Speyside",7,6,0.055603,2
+"Speyside",7,8,0.065685,3
+"Speyside",7,10,0.307766,6
+"Speyside",7,12,0.08734,5
+"Speyside",7,14,0.06892,2
+"Speyside",7,16,0.08761,2
+"Speyside",7,18,0,1
+"Speyside",7,20,0,1
+"Speyside",8,8,0.101586,3
+"Speyside",8,10,0.061802,2
+"Speyside",8,12,0.010699,1
+"Speyside",8,14,0.090458,5
+"Speyside",8,16,0.065902,5
+"Speyside",8,18,0.064897,3
+"Speyside",8,20,0,1
+"Speyside",8,22,0.026352,1
+"Waterdown Woods",6,0,0.18117,2
+"Waterdown Woods",6,2,0.073768,1
+"Waterdown Woods",6,4,0.048457,2
+"Waterdown Woods",6,6,0.293941,11
+"Waterdown Woods",6,8,0.601154,17
+"Waterdown Woods",6,10,0.897089,28
+"Waterdown Woods",6,12,0.38599,14
+"Waterdown Woods",6,14,0.726815,30
+"Waterdown Woods",6,16,0.622243,28
+"Waterdown Woods",6,18,0.736309,21
+"Waterdown Woods",6,20,0.58742,22
+"Waterdown Woods",6,22,0.057336,5
+"Waterdown Woods",7,0,0.002498,1
+"Waterdown Woods",7,2,0.025121,1
+"Waterdown Woods",7,6,0.018643,2
+"Waterdown Woods",7,8,0.54007,22
+"Waterdown Woods",7,10,0.826383,30
+"Waterdown Woods",7,12,0.433017,14
+"Waterdown Woods",7,14,0.483883,21
+"Waterdown Woods",7,16,0.435692,16
+"Waterdown Woods",7,18,0.331597,19
+"Waterdown Woods",7,20,0.527786,23
+"Waterdown Woods",7,22,0.01076,2
+"Waterdown Woods",8,4,0.035413,1
+"Waterdown Woods",8,6,0.108674,5
+"Waterdown Woods",8,8,0.117535,6
+"Waterdown Woods",8,10,0.249831,19
+"Waterdown Woods",8,12,0.605409,19
+"Waterdown Woods",8,14,0.291701,21
+"Waterdown Woods",8,16,0.325409,13
+"Waterdown Woods",8,18,0.475215,24
+"Waterdown Woods",8,20,0.018885,2
+"Waterdown Woods",8,22,0.006491,2
+"Wildflower Woods",6,0,0.092906,2
+"Wildflower Woods",6,6,0.007873,2
+"Wildflower Woods",6,8,0.114574,6
+"Wildflower Woods",6,10,0.041313,2
+"Wildflower Woods",6,12,0.057845,5
+"Wildflower Woods",6,14,0.131314,4
+"Wildflower Woods",6,16,0.175378,5
+"Wildflower Woods",6,18,0.070182,2
+"Wildflower Woods",6,20,0.099975,5
+"Wildflower Woods",6,22,0.002869,1
+"Wildflower Woods",7,0,0.017932,2
+"Wildflower Woods",7,4,0.026251,1
+"Wildflower Woods",7,6,0.109911,5
+"Wildflower Woods",7,8,0.092235,5
+"Wildflower Woods",7,10,0.078037,5
+"Wildflower Woods",7,12,0.111478,6
+"Wildflower Woods",7,14,0.228389,6
+"Wildflower Woods",7,16,0.214173,6
+"Wildflower Woods",7,18,0.179554,5
+"Wildflower Woods",7,20,0.147536,3
+"Wildflower Woods",7,22,0.025791,1
+"Wildflower Woods",8,0,0.079816,3
+"Wildflower Woods",8,6,0.04161,2
+"Wildflower Woods",8,8,0.081798,3
+"Wildflower Woods",8,10,0.108455,7
+"Wildflower Woods",8,12,0,2
+"Wildflower Woods",8,14,0.209657,5
+"Wildflower Woods",8,16,0.053592,3
+"Wildflower Woods",8,18,0.053576,1
+"Wildflower Woods",8,20,0.08458,4
+"Wildflower Woods",8,22,0.016768,1
