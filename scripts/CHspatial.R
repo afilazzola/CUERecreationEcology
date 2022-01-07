@@ -67,6 +67,7 @@ allMapbox <- bind_rows(polyMapbox)
 allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
+
 ## export instersection for review
 # st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
 

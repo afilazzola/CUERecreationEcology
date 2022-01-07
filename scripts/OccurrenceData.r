@@ -59,9 +59,9 @@ MapboxMetrics <- MapboxTimingDensity %>%
 
 ## Convert plant dataset into community matrix
 plants <- propOccDF %>% filter(kingdom == "Plantae") %>% 
-            dplyr::select(Name, speciesAbrv, Year, propOcc) %>% 
+            dplyr::select(Name, speciesAbrv,  propOcc) %>% 
             filter(!is.na(speciesAbrv)) %>% 
-            group_by(Name, Year, speciesAbrv) %>% 
+            group_by(Name,  speciesAbrv) %>% 
             summarize(totalProp = sum(propOcc)) %>% 
             spread(speciesAbrv, totalProp, fill=0)
 
@@ -79,18 +79,26 @@ library(vegan)
 ## Transform data
 respData <- dplyr::select(plantsMapbox, abrtvs:vulgtm)
 respDataNArmved <- respData[!is.na(rowSums(respData)),]
-respDataTrans <- decostand(respDataNArmved, "hellinger")
+respDataTrans <- respDataNArmved[,colSums(respDataNArmved)>0]
+respDataTrans <- decostand(respDataTrans, method="hell")
+
+## Check for collinearity
+library(usdm)
+coLinear <- vifcor(data.frame(respDataTrans))
+respDataTrans <- respDataTrans[coLinear@results$Variables]
 
 dca1 <- decorana(respDataTrans)
 dca1
 
 ## Adjust other data
 predData <- dplyr::select(plantsMapbox, Month6.offhours:Month8.peakhours) %>% .[!is.na(rowSums(respData)),]
-partialData <-  plantsMapbox %>% data.frame() %>% .[!is.na(rowSums(respData)),"Year"] %>% as.vector()
 
-cca1 <- cca(X= respDataTrans, Y=predData, Z=as.factor(partialData))
-summary(cca1)
+rda1 <- rda(X= respDataTrans, Y=predData)
+summary(rda1)
 
-plot(cca1)
-anova(cca1)
+plot(rda1)
+anova(rda1)
 
+pcaScoresMapbox <- cbind(predData, scores(rda1, choices=c(1,2), display="site"))
+
+ggplot(pcaScoresMapbox, aes(x=Month6.peakhours, y= PC2)) + geom_point()
