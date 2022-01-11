@@ -77,7 +77,7 @@ plantsMapbox <- MapboxWide %>% left_join(plants)
 library(vegan)
 
 ## Transform data
-respData <- dplyr::select(plantsMapbox, abrtvs:vulgtm)
+respData <- dplyr::select(plantsMapbox, acrflm:vulgtm)
 respDataNArmved <- respData[!is.na(rowSums(respData)),]
 respDataTrans <- respDataNArmved[,colSums(respDataNArmved)>0]
 respDataTrans <- decostand(respDataTrans, method="hell")

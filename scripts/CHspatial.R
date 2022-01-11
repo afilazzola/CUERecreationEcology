@@ -83,7 +83,7 @@ Mapboxtiming <- intersecMapboxCA %>%
   mutate(month = as.numeric(format(date, format = "%m"))) %>% 
   mutate(start_h2 =  agg_time_period*2) %>% 
   group_by(Name, month, start_h2) %>% 
-  summarize(activity = sum(activity_index_total), nPolys = length(activity_index_total))
+  summarize(activity = sum(activity_index_total), nPolys = length(activity_index_total), )
 
 ## Save
 mapboxTimingOut <- Mapboxtiming %>% data.frame() %>% dplyr::select(-geometry) 
@@ -134,24 +134,27 @@ trailsLands <- st_intersection(trails, studyAreas)
 
 ### Calculate length per CA area
 trailSummary <- trailsLands %>% group_by(Name) %>% summarize(trailLength = sum(ShapeSTLen), 
-                                             trailDens=trailLength/log(unique(SHAPE_Leng)),
+                                             trailDens=trailLength/(unique(SHAPE_Area)/1000000),
                                              parkArea = unique(SHAPE_Area))
 
 
 ## Trail relationship with mapbox
-joinData <- merge(data.frame(trailSummary), data.frame(summaryMapbox), by="Name", all=T)
+joinData <- merge(data.frame(trailSummary), data.frame(summaryMapbox), by="Name", all=T) %>% 
+              mutate(activityDensity = activity/(parkArea/1000000))
 
 
-plot1 <- ggplot(joinData, aes(x=trailLength, y=activity/log(parkArea), label=Name)) +theme_classic() +
+plot1 <- ggplot(joinData, aes(x=trailLength, y=activityDensity, label=Name)) +theme_classic() +
   geom_point(size=4) + ylab("Mapbox Activity Density") + xlab("Sum Trail Length (m)") +
   geom_text(nudge_y = 0.5, nudge_x = 100) 
 plot1
 
-plot2 <- ggplot(joinData, aes(x=trailDens, y=activity/log(parkArea))) + geom_point() +  theme_classic() +
+plot2 <- ggplot(joinData%>% filter(Name != "Robert Edmondson"), aes(x=trailDens, y=activityDensity)) + geom_point() +  theme_classic() +
   geom_point(size=4) + 
   geom_text(aes(label=Name),nudge_y = 0.5, nudge_x = 0.05)  +
   xlab("Trail Density")+ ylab("Mapbox Activity Density") 
 plot2
+
+m1 <- lm(activityDensity ~ trailDens, data=joinData %>% filter(Name != "Robert Edmondson"))
 
 gridExtra::grid.arrange(plot1, plot2, ncol=2)
 
