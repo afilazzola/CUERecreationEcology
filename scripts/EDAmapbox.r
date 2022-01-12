@@ -15,36 +15,7 @@ trails <- readOGR(layer="Trails", dsn="data//CHProperties")
 trails <- spTransform(trails, CRS="+proj=longlat +datum=WGS84 +no_defs") ## switch to lat lon
 trails <- st_as_sf(trails)
 
-## find polygon intersection with sites
-out <- st_intersection(sites, lands)
-
-## Properties with data
-studyAreas <- lands[lands$Name %in% out$Name,]
-
-
-#### Connect Mapbox polygons
-# mapbox <- read.csv("data//Mapbox//mapboxJunJulyAug2020.csv")
-# e <- as(raster::extent(78.46801, 78.83157, 19.53407, 19.74557), "SpatialPolygons")
-# 
-# outPoly <- data.frame()
-# for(i in 1:nrow(mapbox)){
-#   ### load mapbox polygon
-#   bbox <- as.numeric(strsplit(mapbox[i,"bounds"], split=",")[[1]]) ## extract boundaries
-#   e <- as(raster::extent(bbox[1],bbox[3],bbox[2],bbox[4]), "SpatialPolygons") ## convert to polygon
-#   proj4string(e) <- "+proj=longlat +datum=WGS84 +no_defs" ## assign CRS
-#   e <- st_as_sf(e) ## convert to SF data class
-#   mapboxMatch <- st_intersection(studyAreas, e)
-#   if(nrow(mapboxMatch)==0){
-#     next
-#   } else{
-#   polyData <- mapbox[i,]
-#   }
-#   outPoly <- rbind(outPoly, polyData)
-#   print(i)
-# }
-
-
-#### Used super computer  to find relevant polygons
+#### Used super computer  to find relevant polygons (see MapboxMatch.r)
 polyFiles <- list.files("out//polygons", full.names = T) %>%  map_df(~read.csv(., stringsAsFactors = F))
 
 ### Function to convert bounds to polygon
@@ -62,6 +33,28 @@ allMapbox <- bind_rows(polyMapbox)
 allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
+
+## Extracting timing
+Mapboxtiming <- intersecMapboxCA %>% 
+  mutate(date=  as.Date(paste0(month,"-01"))) %>% 
+  mutate(month = as.numeric(format(date, format = "%m"))) %>% 
+  mutate(start_h2 =  agg_time_period*2) %>% 
+  mutate(dayOfWeek = ifelse(agg_day_period == 0, "weekday", "weekend"))
+
+## Summarize data by Park
+MapboxSummary <- Mapboxtiming %>% data.frame() %>% 
+                  group_by(Name, month, start_h2, dayOfWeek) %>% 
+                  summarize(totalActivity = sum(activity_index_total))
+
+## Refugia - raster pixels with no activity
+uniquePolys <- Mapboxtiming %>%  distinct(Name, geometry)
+mobileArea <- uniquePolys %>% 
+                mutate(polyArea = st_area(.)) %>% 
+                group_by(Name) %>% 
+                summarize(totalHumanArea = sum(polyArea)) %>% 
+                data.frame() %>%  dplyr::select(-geometry)
+LandsMobileArea <- lands %>%  left_join(mobileArea) %>% 
+                    mutate(HumanMobilePercent = totalHumanArea/SHAPE_Area*100)
 
 ## export instersection for review
 # st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
