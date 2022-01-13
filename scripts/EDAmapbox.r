@@ -33,6 +33,8 @@ allMapbox <- bind_rows(polyMapbox)
 allMapbox <- cbind(allMapbox, polyFiles)
 intersecMapboxCA <- st_intersection(allMapbox, lands)
 
+## export intersections for review
+# st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
 
 ## Extracting timing
 Mapboxtiming <- intersecMapboxCA %>% 
@@ -44,7 +46,17 @@ Mapboxtiming <- intersecMapboxCA %>%
 ## Summarize data by Park
 MapboxSummary <- Mapboxtiming %>% data.frame() %>% 
                   group_by(Name, month, start_h2, dayOfWeek) %>% 
-                  summarize(totalActivity = sum(activity_index_total))
+                  summarize(totalActivity = sum(activity_index_total)) 
+lowestActivity <- min(MapboxSummary$totalActivity[MapboxSummary$totalActivity!=0])
+MapboxSummary <- MapboxSummary %>% 
+                  mutate(logActivity = log(totalActivity+lowestActivity)) ## adjust for right skew
+
+## Summary statistics
+MapboxStatistics <- MapboxSummary %>% 
+                      mutate(accessibility = ifelse(start_h2 < 8 | start_h2 > 17, "closed", "open")) %>% 
+                      group_by(Name, dayOfWeek, accessibility) %>% 
+                      summarize(avgLogActivity = sum(logActivity), 
+                      IQRLogActivity = IQR(logActivity))
 
 ## Refugia - raster pixels with no activity
 uniquePolys <- Mapboxtiming %>%  distinct(Name, geometry)
@@ -54,7 +66,49 @@ mobileArea <- uniquePolys %>%
                 summarize(totalHumanArea = sum(polyArea)) %>% 
                 data.frame() %>%  dplyr::select(-geometry)
 LandsMobileArea <- lands %>%  left_join(mobileArea) %>% 
-                    mutate(HumanMobilePercent = totalHumanArea/SHAPE_Area*100)
+                    mutate(HumanMobilePercent = (totalHumanArea/SHAPE_Area)*100)
 
-## export instersection for review
-# st_write(intersecMapboxCA, dsn="data//Mapbox", layer="MapboxCH", driver="ESRI Shapefile")
+
+
+#### Trail overlap with mapbox activity for CH lands
+
+## First need to combine trails
+trailsCombined <- st_combine(trails)
+
+trailMapbox <- st_intersection(intersecMapboxCA, trailsCombined)
+
+
+## Amount of total activity along trails
+trailData <- trailMapbox %>% 
+              group_by(Name) %>%
+              summarize(totalTrailActivity = sum(activity_index_total)) %>% 
+                        data.frame()
+
+## Get total trail activity to determine difference
+rawTotalActivity <- intersecMapboxCA %>% 
+                        group_by(Name) %>% 
+                        summarize(totalActivity = sum(activity_index_total)) %>% 
+                        data.frame() 
+
+## Join and determine difference to get off trail data
+trailPatterns <- rawTotalActivity %>% 
+  dplyr::select(-geometry) %>% 
+  left_join(trailData) %>% 
+  mutate(TrailActivityPercent= totalTrailActivity / totalActivity*100)
+
+
+
+### Join all data and save output for exploration
+trailPatternsSimplified <- trailPatterns %>% 
+  dplyr::select(Name, TrailActivityPercent)
+LandsMobileAreaSimplified <- LandsMobileArea %>% 
+  data.frame() %>% 
+  dplyr::select(-geometry, -OBJECTID, -totalHumanArea ) 
+MapboxDataOut <- MapboxStatistics %>% 
+        left_join(LandsMobileAreaSimplified) %>% 
+        left_join(trailPatternsSimplified) %>% 
+        mutate(PropertyAreakm2 = SHAPE_Area / 1000000) %>% 
+        mutate(activityDensityLog = avgLogActivity / PropertyAreakm2) %>% 
+        data.frame()
+
+write.csv(MapboxDataOut, "out//data//MapboxSummaryData.csv", row.names=F)
