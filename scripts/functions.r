@@ -1,7 +1,7 @@
 #### Functions
 
 ###### GBIF lookup of species name
-library(rgbif)
+require(rgbif)
 getTaxaInfo <- function(genusVector) {
 ## loop through all the genus
 genusDF <- data.frame()
@@ -21,4 +21,17 @@ for(i in genusVector){
   print(progressBar)
 }
 return(genusDF)
+}
+
+
+
+## Save plot
+save_PDF <- function(plotName = "rplot1.pdf", setWidth = 8, setHeight = 6) {
+pdf(plotName,         # File name
+    width = setWidth, height = setHeight, # Width and height in inches
+    bg = "white",          # Background color
+    colormodel = "cmyk",    # Color model (cmyk is required for most publications)
+    useDingbats = F)          # Paper size
+print(last_plot())
+dev.off()  ## close Graphics
 }
