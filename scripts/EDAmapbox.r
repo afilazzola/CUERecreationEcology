@@ -7,6 +7,8 @@ library(rgdal)
 library(tidyverse)
 library(sf)
 
+source("scripts//functions.r")
+
 
 ##  Load shapefile for lands
 lands <- readOGR(layer="CHLands", dsn="data//CHProperties")
