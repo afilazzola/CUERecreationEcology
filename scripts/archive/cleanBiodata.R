@@ -4,7 +4,10 @@
 library(tidyverse)
 library(vegan)
 
-## load data
+## Site code info
+siteCodes <- read.csv("data//biodiversityData//CHsitenames.csv")
+
+### Ground vegetation data
 veg <- read.csv("data//biodiversityData//CH_groundvegetation Feb 11 2021.csv", header=F, stringsAsFactors = F)
 
 ## Create new category combining 
@@ -21,32 +24,66 @@ vegLong <- vegLong %>% separate(surveyInstance, sep=";", c("Site","Year","Metric
 vegCover <- vegLong %>% filter(Metric == "Cover (m2)")
 
 ## Summarize by site
-vegCover <- vegCover %>% separate(Site, sep=" ", c("SiteName","QuadratID"))
-unique(vegCover$QuadratID)
-siteMeans <- vegCover %>% group_by(SiteName, Year, SpeciesName) %>% 
-  mutate(value=as.numeric(value)) %>% 
-  summarize(meanSpp = mean(value, na.rm=T)) %>% 
-  filter(!is.na(meanSpp))
+vegCover <- vegCover %>% 
+  separate(Site, sep=" ", c("Sitecode","PlotID")) %>% 
+  left_join(siteCodes)
+unique(vegCover$PlotID)
 
-## Spread back into community matrix
-vegWide <- siteMeans %>% mutate(abrSpp = abbreviate(SpeciesName, 6)) %>% 
-  select(-SpeciesName) %>% 
-  spread(abrSpp, meanSpp, fill=0)
+## Length Not NA to find number of species observed
+lengthNA <- function(x) length(x[!is.na(x)])
 
+vegSiteSummary <- vegCover %>% 
+  group_by(PropertyName, PlotID, Year) %>%  ## calculate plot level averages
+  mutate(value = as.numeric(value)) %>% 
+  summarize(nSpecies = lengthNA(value),
+            coverDens = mean(value, na.rm = T)) %>% 
+  ungroup() %>% 
+  group_by(PropertyName) %>% ## calculate site level patterns
+  summarize(AbundanceAVG = mean(coverDens), RichnessAVG = mean(nSpecies)) %>% 
+  mutate(community = "ground plants")
+  
 
-## ordination
-ordData <- decostand(vegWide[,3:ncol(vegWide)], method="hellinger")
-rownames(ordData) <- paste(vegWide$SiteName, vegWide$Year, sep="-")
-pca1 <- rda(ordData, Z=as.factor(vegWide$Year))
-
-plot(pca1)
-orditorp(pca1, display = "species", cex = 0.7, col = "darkorange3", air=0.5)
-orditorp(pca1, display = "sites", cex = 0.7, col = "darkslateblue", air=0.1)
-
-summary(pca1)
-
+### Trees
+trees <- read.csv("data//biodiversityData//CHTreeData.csv")
+trees$Stem.Abundance <- as.numeric(gsub("#VALUE!", NA, trees$Stem.Abundance))
 
 
+trees <- trees %>% separate(Site, into=c("Sitecode", "PlotID"), sep=" ")
+treesReduced <- trees %>% 
+  left_join(siteCodes) %>% 
+  dplyr::select(Sitecode, PropertyName, PlotID, Year, Species.Richness,
+                    Stem.Abundance, Total.Basal.Area) 
 
+
+treeSiteSummary <- treesReduced %>% 
+                    group_by(PropertyName) %>% 
+                    summarize(RichnessAVG = mean(Species.Richness, na.rm = T),
+                    AbundanceAVG = mean(Stem.Abundance, na.rm = T),
+                    BasalAreaAVG =  mean(Total.Basal.Area, na.rm = T))%>% 
+                    mutate(community = "trees")
 
 ### Bird data
+
+birds <- read.csv("data//biodiversityData//CH_FBMP birds Feb 12 2021.csv", stringsAsFactors = F) %>% 
+            select(Time:Comments)
+
+birdSummary<- birds %>%
+              group_by(Site) %>% 
+              filter(Year> 2009) %>% 
+              mutate(Number = as.numeric(Number)) %>% 
+              summarize(nRich = length(unique(Species.Name)), abd = sum(Number, na.rm=T), nInstances  = length(unique(Date))) %>% 
+              mutate(RichnessAVG = nRich / nInstances, AbundanceAVG = abd/nInstances) %>% 
+              mutate(community = "birds") %>% rename(PropertyName = Site)
+
+## combine datasets
+
+birdJoinData <- birdSummary %>% 
+  dplyr::select(PropertyName, community, AbundanceAVG, RichnessAVG)
+treeJoinData <- treeSiteSummary %>% 
+  dplyr::select(PropertyName, community, AbundanceAVG, RichnessAVG, BasalAreaAVG)
+plantJoinData <- vegSiteSummary %>% 
+  dplyr::select(PropertyName, community, AbundanceAVG, RichnessAVG)
+
+bioDataCombined <- plyr::rbind.fill(birdJoinData, treeJoinData, plantJoinData)
+
+write.csv(bioDataCombined, "data//biodiversityData//summarizedSitelevelData.csv", row.names=F)
