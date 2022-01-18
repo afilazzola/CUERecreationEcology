@@ -183,3 +183,157 @@ ggsave("figs/TrailPatterns.pdf",
 ggsave("figs/AccessPatterns.pdf", 
     arrangeGrob(plot6, plot7), 
     height=10, width=8)
+
+
+### Biodiversity exploration
+
+biodata <- read.csv("data//biodiversityData//summarizedSitelevelData.csv") %>% 
+    rename(Name = PropertyName)
+
+bioMapbox <- biodata %>% right_join(mapbox)
+
+
+## Richness
+ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods"), 
+    aes(x = activityDensityLog, y = RichnessAVG,  label=Name)) +
+    facet_wrap(~community, scales="free") + geom_text(aes(color = Area_Type)) + 
+    geom_smooth(method = "glm", color="black", method.args = list(family=gaussian(link = "log"))) +
+    theme_classic() + theme(text = element_text(size = 16)) + 
+    scale_colour_manual(values=c("#999999", "#E69F00", "#0c0d0e")) +
+    ylab("Average annual species richness") + xlab("Mobile cell activity density") + 
+save_PDF("activityDensity.pdf", setWidth = 14)
+
+activityModels <- bioMapbox %>%
+    filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 
+    group_by(community) %>%
+    do(fit = broom::tidy(glm(RichnessAVG ~ activityDensityLog, family=gaussian(link = "log"), 
+                            data = .))) %>%
+    unnest(fit)
+### No pattern with abundance
+
+## Park usage
+ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend"), 
+    aes(x = HumanMobilePercent, y = AbundanceAVG, label=Name)) +
+    facet_wrap(~community, scales="free") + geom_text(aes( color=Area_Type)) + 
+   # geom_smooth(method = "lm",color="black") +
+    scale_colour_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+    theme_classic() + theme(text = element_text(size = 16)) +
+    ylab("Average annual abundance") + xlab("Park use (%)")
+save_PDF("parkUse.pdf", setWidth = 14)
+
+usageModels <- bioMapbox %>%
+    filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 
+    group_by(community) %>%
+    do(fit = broom::tidy(glm(AbundanceAVG ~ HumanMobilePercent, family=gaussian(link = "log"),
+                            data = .))) %>%
+    unnest(fit)
+
+ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend"), 
+    aes(x = TrailActivityPercent, y = AbundanceAVG, label=Name)) +
+    facet_wrap(~community, scales="free") + geom_text() + 
+    geom_smooth(method = "lm") +
+    scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic()
+
+    
+trailUseModels <- bioMapbox %>%
+    filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 
+    group_by(community) %>%
+    do(fit = broom::tidy(lm(RichnessAVG ~ TrailActivityPercent,
+                            data = .))) %>%
+    unnest(fit)
+
+#### IQR patterns
+
+ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend"), 
+    aes(x = IQRLogActivity, y = RichnessAVG, label=Name)) +
+    facet_wrap(~community, scales="free") + geom_text(aes( color=Area_Type)) +
+    geom_smooth(method = "glm", color="black", method.args = list(family=gaussian(link = "log"))) +
+    scale_color_manual(values=c("#999999","#E69F00", "#56B4E9")) + 
+    theme_classic() + theme(text = element_text(size = 16)) +
+    ylab("Average annual species richness") + xlab("Variability in cell activity (IQR)")
+save_PDF("ActivityVariability.pdf", setWidth = 14)
+
+IQRModels <- bioMapbox %>%
+    filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 
+    group_by(community) %>%
+    do(fit = broom::tidy(glm(RichnessAVG ~ IQRLogActivity, family=gaussian(link = "log"),
+                            data = .))) %>%
+    unnest(fit)
+
+
+## Patterns with species community
+birdComm <- birdComm %>% rename(Name = Site)
+openPeakHours <- mapbox %>% filter(dayOfWeek == "weekend" & accessibility == "open")
+birdCommMapbox <- left_join(birdComm, openPeakHours) %>% data.frame()
+
+library(vegan)
+rownames(birdCommMapbox) <- birdCommMapbox$Name
+birdCommMapbox <- birdCommMapbox %>% dplyr::select(-Name)
+
+## Select data for processing
+predData <- birdCommMapbox %>% dplyr::select(avgLogActivity:IQRLogActivity, SHAPE_Leng:activityDensityLog)
+responseData <- birdCommMapbox %>% dplyr::select(AcdnFl:YllwWr)
+responseData <- responseData[colSums(responseData)>1]
+responseTransformed <- decostand(responseData, method = "hellinger")
+
+## Drop NA values
+responseTransformed <- responseTransformed[!is.na(predData$HumanMobilePercent),]
+predData <- predData[!is.na(predData$HumanMobilePercent),]
+predData <- decostand(predData, method = "standardize")
+
+rda1 <- rda(responseTransformed ~ PropertyAreakm2   + HumanMobilePercent + avgLogActivity , data = predData)
+summary(rda1)
+anova(rda1)
+plot(rda1)
+
+
+## Tree community data
+trees <- trees %>% separate(Site, into=c("Sitecode", "PlotID"), sep=" ")
+treesReduced <- trees %>% 
+  left_join(siteCodes) %>% 
+  dplyr::select(Sitecode, PropertyName, PlotID, Year, 
+                    American.Beech.basal.area:Yellow.Birch.basal.area) 
+names(treesReduced) <- gsub(".basal.area", "", names(treesReduced))
+
+treeCommunity <- treesReduced %>% 
+                    group_by(PropertyName) %>% 
+                    dplyr::select(-Year, -PlotID, -Sitecode) %>% 
+                    summarize_all(mean, na.rm=T)
+treeCommunity[is.na(treeCommunity)] <- 0
+
+treeComm <- treeCommunity %>% rename(Name = PropertyName)
+treeCommMapbox <- left_join(treeComm, openPeakHours) %>% data.frame()
+
+rownames(treeCommMapbox) <- treeCommMapbox$Name
+treeCommMapbox <- treeCommMapbox %>% dplyr::select(-Name)
+
+## select data for processing
+predData <- treeCommMapbox %>% dplyr::select(avgLogActivity:IQRLogActivity, SHAPE_Leng:activityDensityLog)
+responseData <- treeCommMapbox %>% dplyr::select(American.Beech:Yellow.Birch)
+responseData <- responseData[colSums(responseData)!=0]
+responseTransformed <- decostand(responseData, method = "hellinger")
+
+## Drop NA values
+responseTransformed <- responseTransformed[!is.na(predData$HumanMobilePercent),]
+predData <- predData[!is.na(predData$HumanMobilePercent),]
+predData <- decostand(predData, method = "standardize")
+
+rda1 <- rda(responseTransformed ~   IQRLogActivity * HumanMobilePercent * activityDensityLog , data = predData)
+summary(rda1)
+anova(rda1, by = "term")
+plot(rda1)
+RsquareAdj(rda1)
+
+pdf("treeOrdination2.pdf",         # File name
+    width = 8, height = 8, # Width and height in inches
+    bg = "white",          # Background color
+    colormodel = "cmyk",    # Color model (cmyk is required for most publications)
+    useDingbats = F) 
+
+par(mar=c(4.5, 4.5, 0.5, 0.5))
+plot(rda1, type="n", xlim=c(-1,1))
+orditorp(rda1, display = "species", cex = 0.7, col = "darkorange3", air=0.5)
+orditorp(rda1, display = "sites", cex = 0.7, col = "darkslateblue", air=0.1)
+orditorp(rda1, display = "bp", cex = 1, col = "black", air=0.1)
+dev.off()
+

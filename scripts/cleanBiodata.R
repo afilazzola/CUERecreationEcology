@@ -62,6 +62,8 @@ treeSiteSummary <- treesReduced %>%
                     BasalAreaAVG =  mean(Total.Basal.Area, na.rm = T))%>% 
                     mutate(community = "trees")
 
+## Tree community data
+
 ### Bird data
 
 birds <- read.csv("data//biodiversityData//CH_FBMP birds Feb 12 2021.csv", stringsAsFactors = F) %>% 
@@ -74,6 +76,14 @@ birdSummary<- birds %>%
               summarize(nRich = length(unique(Species.Name)), abd = sum(Number, na.rm=T), nInstances  = length(unique(Date))) %>% 
               mutate(RichnessAVG = nRich / nInstances, AbundanceAVG = abd/nInstances) %>% 
               mutate(community = "birds") %>% rename(PropertyName = Site)
+
+birdComm <- birds %>%
+              filter(Year> 2009) %>% 
+              mutate(Number = as.numeric(Number)) %>% 
+              mutate(species = abbreviate(Species.Name, 6)) %>% 
+              group_by(Site, species) %>% 
+              summarize(count = sum(Number, na.rm=T)) %>% 
+              spread(species, count, fill=0)
 
 ## combine datasets
 
