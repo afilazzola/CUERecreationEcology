@@ -45,13 +45,26 @@ Mapboxtiming <- intersecMapboxCA %>%
   mutate(start_h2 =  agg_time_period*2) %>% 
   mutate(dayOfWeek = ifelse(agg_day_period == 0, "weekday", "weekend"))
 
+### Drop pixels with higher overnight activity to account for road pollution and non-park activity
+MapboxtimingParkCenter <- Mapboxtiming %>% 
+  mutate(offHours = ifelse(start_h2 <= 4 | start_h2 == 22, "Y","N")) %>% 
+  group_by(bounds, offHours) %>% 
+  summarize(totalActivity = sum(activity_index_total)) %>% 
+  filter(offHours == "Y")
+
+## Adjust activity by area of pixel
+MapboxtimingAdjusted <- Mapboxtiming %>%  
+  mutate(area = as.vector(st_area(Mapboxtiming))) %>% 
+  filter(!(Mapboxtiming$bounds %in% MapboxtimingParkCenter$bounds)) %>%   ## Drop non-park activity 
+  mutate(areaAdjActivity = activity_index_total * area)
+
 ## Summarize data by Park
-MapboxSummary <- Mapboxtiming %>% data.frame() %>% 
+MapboxSummary <- MapboxtimingAdjusted %>% data.frame() %>% 
                   group_by(Name, month, start_h2, dayOfWeek) %>% 
-                  summarize(totalActivity = sum(activity_index_total)) 
+                  summarize(totalActivity = sum(areaAdjActivity)) 
 lowestActivity <- min(MapboxSummary$totalActivity[MapboxSummary$totalActivity!=0])
 MapboxSummary <- MapboxSummary %>% 
-                  mutate(logActivity = log(totalActivity+lowestActivity)) ## adjust for right skew
+                  mutate(logActivity = log(totalActivity)) ## adjust for right skew
 
 ## Summary statistics
 MapboxStatistics <- MapboxSummary %>% 
@@ -61,7 +74,7 @@ MapboxStatistics <- MapboxSummary %>%
                       IQRLogActivity = IQR(logActivity))
 
 ## Refugia - raster pixels with no activity
-uniquePolys <- Mapboxtiming %>%  distinct(Name, geometry)
+uniquePolys <- MapboxtimingAdjusted %>%  distinct(Name, geometry)
 mobileArea <- uniquePolys %>% 
                 mutate(polyArea = st_area(.)) %>% 
                 group_by(Name) %>% 
