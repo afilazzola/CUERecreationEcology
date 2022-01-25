@@ -58,13 +58,16 @@ MapboxtimingAdjusted <- Mapboxtiming %>%
   filter(!(Mapboxtiming$bounds %in% MapboxtimingParkCenter$bounds)) %>%   ## Drop non-park activity 
   mutate(areaAdjActivity = activity_index_total * area)
 
+# st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile")
+
+
 ## Summarize data by Park
 MapboxSummary <- MapboxtimingAdjusted %>% data.frame() %>% 
                   group_by(Name, month, start_h2, dayOfWeek) %>% 
                   summarize(totalActivity = sum(areaAdjActivity)) 
 lowestActivity <- min(MapboxSummary$totalActivity[MapboxSummary$totalActivity!=0])
 MapboxSummary <- MapboxSummary %>% 
-                  mutate(logActivity = log(totalActivity)) ## adjust for right skew
+                  mutate(logActivity = log(totalActivity+lowestActivity)) ## adjust for right skew
 
 ## Summary statistics
 MapboxStatistics <- MapboxSummary %>% 
@@ -90,19 +93,19 @@ LandsMobileArea <- lands %>%  left_join(mobileArea) %>%
 ## First need to combine trails
 trailsCombined <- st_combine(trails)
 
-trailMapbox <- st_intersection(intersecMapboxCA, trailsCombined)
+trailMapbox <- st_intersection(MapboxtimingAdjusted, trailsCombined)
 
 
 ## Amount of total activity along trails
 trailData <- trailMapbox %>% 
               group_by(Name) %>%
-              summarize(totalTrailActivity = sum(activity_index_total)) %>% 
+              summarize(totalTrailActivity = sum(areaAdjActivity)) %>% 
                         data.frame()
 
 ## Get total trail activity to determine difference
-rawTotalActivity <- intersecMapboxCA %>% 
+rawTotalActivity <- MapboxtimingAdjusted %>% 
                         group_by(Name) %>% 
-                        summarize(totalActivity = sum(activity_index_total)) %>% 
+                        summarize(totalActivity = sum(areaAdjActivity)) %>% 
                         data.frame() 
 
 ## Join and determine difference to get off trail data

@@ -35,3 +35,26 @@ pdf(plotName,         # File name
 print(last_plot())
 dev.off()  ## close Graphics
 }
+
+find_Native_Status <- function(speciesVector, nameType = "scientific") {
+nativeList <- read.csv("data//biodiversityData//PlantNativeStatus.csv")
+
+## drop "sp." from genus only
+GenusOrSpecies <- tolower(gsub(" sp.", "", speciesVector))
+GenusOrSpecies <- gsub(".", " ", GenusOrSpecies, fixed=T)
+GenusOrSpecies <- trimws(GenusOrSpecies)
+
+## search table
+if(nameType == "scientific"){
+searchList = tolower(nativeList$SCIENTIFIC_NAME)
+} else{
+searchList = tolower(nativeList$ENGLISH_COMMON_NAME)
+}
+
+matchNames <- c()
+for(i in GenusOrSpecies){
+matchName <-  nativeList[match(i, searchList), "EXOTIC_NATIVE"]
+matchNames <- c(matchNames, matchName)
+}
+return(matchNames)
+}

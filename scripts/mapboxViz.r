@@ -47,19 +47,18 @@ m1 <- lm(avgLogActivity ~ dailyAdults * dayOfWeek,
     data= mapboxParkReservations %>% filter(Name != "Mountsberg"))
 anova(m1)
 summary(m1)
-lmOut <- effects::effect("dailyAdults", m1, 
+lmOut <- effects::effect("dailyAdults:dayOfWeek ", m1, 
     xlevels = list(dailyAdults = seq(150,550,50))) %>% 
     data.frame()
 
 plot2 <- ggplot(mapboxParkReservations %>% filter(Name != "Mountsberg"),
  aes(x = dailyAdults, y =avgLogActivity, color=dayOfWeek, label = Name)) +
  scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
- geom_line(data=  lmOut ,aes(x  = dailyAdults, y= fit, label = NA), color = "grey40", size=1.6) +
+ geom_line(data=  lmOut ,aes(x  = dailyAdults, y= fit, label = NA), size=1.6) +
  geom_text() + xlim(100, 550) + xlab("Total daily reservations") + 
  ylab("Average Mobile Activity (log-transformed)")  +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) 
 plot2
-
 
  ### Trail density comparisons with mapbox
 lands <- readOGR(layer="CHLands", dsn="data//CHProperties")
@@ -200,7 +199,7 @@ ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOf
     geom_smooth(method = "glm", color="black", method.args = list(family=gaussian(link = "log"))) +
     theme_classic() + theme(text = element_text(size = 16)) + 
     scale_colour_manual(values=c("#999999", "#E69F00", "#0c0d0e")) +
-    ylab("Average annual species richness") + xlab("Mobile cell activity density") + 
+    ylab("Average annual species richness") + xlab("Mobile cell activity density") 
 save_PDF("activityDensity.pdf", setWidth = 14)
 
 activityModels <- bioMapbox %>%
@@ -209,11 +208,12 @@ activityModels <- bioMapbox %>%
     do(fit = broom::tidy(glm(RichnessAVG ~ activityDensityLog, family=gaussian(link = "log"), 
                             data = .))) %>%
     unnest(fit)
+activityModels
 ### No pattern with abundance
 
 ## Park usage
 ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend"), 
-    aes(x = HumanMobilePercent, y = AbundanceAVG, label=Name)) +
+    aes(x = HumanMobilePercent, y = RichnessAVG, label=Name)) +
     facet_wrap(~community, scales="free") + geom_text(aes( color=Area_Type)) + 
    # geom_smooth(method = "lm",color="black") +
     scale_colour_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
@@ -224,12 +224,13 @@ save_PDF("parkUse.pdf", setWidth = 14)
 usageModels <- bioMapbox %>%
     filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 
     group_by(community) %>%
-    do(fit = broom::tidy(glm(AbundanceAVG ~ HumanMobilePercent, family=gaussian(link = "log"),
+    do(fit = broom::tidy(glm(RichnessAVG ~ HumanMobilePercent, family=gaussian(link = "log"),
                             data = .))) %>%
     unnest(fit)
+usageModels
 
 ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend"), 
-    aes(x = TrailActivityPercent, y = AbundanceAVG, label=Name)) +
+    aes(x = TrailActivityPercent, y = RichnessAVG, label=Name)) +
     facet_wrap(~community, scales="free") + geom_text() + 
     geom_smooth(method = "lm") +
     scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic()
@@ -241,6 +242,8 @@ trailUseModels <- bioMapbox %>%
     do(fit = broom::tidy(lm(RichnessAVG ~ TrailActivityPercent,
                             data = .))) %>%
     unnest(fit)
+trailUseModels 
+
 
 #### IQR patterns
 
@@ -259,7 +262,7 @@ IQRModels <- bioMapbox %>%
     do(fit = broom::tidy(glm(RichnessAVG ~ IQRLogActivity, family=gaussian(link = "log"),
                             data = .))) %>%
     unnest(fit)
-
+IQRModels
 
 ## Patterns with species community
 birdComm <- birdComm %>% rename(Name = Site)
@@ -318,7 +321,7 @@ responseTransformed <- responseTransformed[!is.na(predData$HumanMobilePercent),]
 predData <- predData[!is.na(predData$HumanMobilePercent),]
 predData <- decostand(predData, method = "standardize")
 
-rda1 <- rda(responseTransformed ~   IQRLogActivity * HumanMobilePercent * activityDensityLog , data = predData)
+rda1 <- rda(responseTransformed ~   IQRLogActivity + HumanMobilePercent +activityDensityLog , data = predData)
 summary(rda1)
 anova(rda1, by = "term")
 plot(rda1)
@@ -337,3 +340,13 @@ orditorp(rda1, display = "sites", cex = 0.7, col = "darkslateblue", air=0.1)
 orditorp(rda1, display = "bp", cex = 1, col = "black", air=0.1)
 dev.off()
 
+
+
+#### Peak hours for mapbox
+
+maxActivity <- MapboxtimingAdjusted %>% 
+    group_by(bounds) %>% 
+    summarize(peakActivity = max(areaAdjActivity)) %>% 
+    select(-bounds)
+
+st_write(maxActivity,dsn="data//Mapbox", layer="test", driver="ESRI Shapefile")
