@@ -2,6 +2,7 @@
 
 ## Libraries
 library(tidyverse)
+library(gridExtra)
 
 ## Data
 mapbox <- read.csv("out//data//MapboxSummaryData.csv")
