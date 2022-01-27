@@ -150,29 +150,3 @@ ELCsitepatterns <- ELCCH %>%
   data.frame() %>% 
   dplyr::select(-geometry)
 
-
-## Load just peak activity from mapbox
-MapboxtimingAdjusted <-  readOGR(dsn="data//Mapbox", layer="MapboxAdjustedActivity")
-MapboxtimingAdjusted <- st_as_sf(MapboxtimingAdjusted)
-
-## crop to lands
-ELCmapbox <- st_intersection(MapboxtimingAdjusted, ELC)
-ELCpatterns <- ELCmapbox %>% 
-  mutate(propArea =  area/SHAPE_A) %>% 
-  mutate(ELCarea = as.numeric(st_area(ELCmapbox))) %>% 
-  group_by(Name, Class_Desc) %>% 
-  summarize(totalActivity = sum(arAdjAc),
-    totalPropArea = sum(propArea),
-    mapboxPolyArea = sum(ELCarea)) %>% 
-  left_join(ELCsitepatterns) %>% 
-mutate(propArea = mapboxPolyArea / totalELCArea)
-
-plot1 <- ggplot(ELCpatterns, aes(x=Class_Desc, y= propArea)) + geom_boxplot()+
-  coord_flip() + theme_classic() + xlab("") + ylab("Proportion of ELC used (%)")
-plot2 <- ggplot(ELCpatterns, aes(x=Class_Desc, y= totalPropArea)) + geom_boxplot()+
-  coord_flip() + theme_classic() + xlab("") + ylab("Proportion of human activity by ELC (%)")
-
-
-ggsave("figs/ELCuse.pdf", 
-    arrangeGrob(plot1, plot2), 
-    height=10, width=8)
