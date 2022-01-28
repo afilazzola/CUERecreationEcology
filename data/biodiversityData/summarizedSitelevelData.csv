@@ -1,0 +1,36 @@
+"PropertyName","community","AbundanceAVG","RichnessAVG","BasalAreaAVG"
+"Bronte-Burloak Woods","birds",28.3888888888889,2.44444444444444,NA
+"Glenorchy","birds",21.8571428571429,2.57142857142857,NA
+"Hilton Falls","birds",32.4333333333333,1.73333333333333,NA
+"Mountsberg","birds",31.5,2.625,NA
+"Neyagawa Woods","birds",22.5,3.2,NA
+"Rattlesnake Point","birds",31.375,2.8125,NA
+"Robert Edmondson","birds",30.8235294117647,2.52941176470588,NA
+"Twiss","birds",28.2857142857143,2.33333333333333,NA
+"Waterdown Woods","birds",36.6111111111111,3,NA
+"Wildflower Woods","birds",7,2.75,NA
+"Yaremko","birds",25.8125,2.625,NA
+"Glenorchy","trees",21.6481481481481,5.87037037037037,0.742468702581395
+"Kilbride","trees",9.16666666666667,3.33333333333333,0.153722938666667
+"Morrison-Wedgewood","trees",17.5,1.5,0.448318755333333
+"Mountsberg","trees",15.03125,3.84375,0.715198853541667
+"Neyagawa Woods","trees",28.5,8.5,1.2003130755
+"Ontario Heritage Trust","trees",12.1818181818182,3.18181818181818,0.400145592
+"Rattlesnake Point","trees",13.9401709401709,3.5982905982906,0.983126234188034
+"Robert Edmondson","trees",16.6666666666667,4.33333333333333,0.3834708955
+"Sixteen Valley","trees",19,8.66666666666667,0.7823198575
+"Speyside","trees",16.875,4.5,0.4455980645
+"Waterdown Woods","trees",17.027027027027,3.47297297297297,1.17575020131081
+"Wildflower Woods","trees",11,4,0.464611336285714
+"Glenorchy","ground plants",0.0880820105820106,3.22222222222222,NA
+"Kilbride","ground plants",0.0458330592105263,16.25,NA
+"Morrison-Wedgewood","ground plants",0.0943472222222222,5.5,NA
+"Mountsberg","ground plants",0.48351868964369,11.5,NA
+"Neyagawa Woods","ground plants",0.103691678691679,8.66666666666667,NA
+"Ontario Heritage Trust","ground plants",0.177986772486772,8.66666666666667,NA
+"Rattlesnake Point","ground plants",0.13252789449113,7.58823529411765,NA
+"Robert Edmondson","ground plants",0.104072802197802,14,NA
+"Sixteen Valley","ground plants",0.09203125,14.5,NA
+"Speyside","ground plants",0.0983074516248858,22.1666666666667,NA
+"Waterdown Woods","ground plants",0.0766379763328777,10.85,NA
+"Wildflower Woods","ground plants",0.130081771664008,14.75,NA

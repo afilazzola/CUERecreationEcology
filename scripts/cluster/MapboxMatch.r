@@ -7,25 +7,10 @@ library(sf)
 
 setwd("~/projects/def-sapna/afila/CUERecEcology")
 
-## Load in biodiversity sites
-# sites <- read.csv("data//biodiversityData//CHSiteAdjusted.csv") ## use corrected locations
-# coordinates(sites) <- ~Lon+Lat
-# proj4string(sites) <- "+proj=longlat +datum=WGS84 +no_defs"
-
-sites <- readOGR(layer="CHSiteadjusted", dsn="data//biodiversityData")
-sites <- st_as_sf(sites)
-
-##  Load shapefile for lands
+## List lands
 lands <- readOGR(layer="CHLands", dsn="data//CHProperties")
 lands <- st_as_sf(lands)
-trails <- readOGR(layer="Trails", dsn="data//CHProperties")
 
-
-## find polygon intersection with sites
-out <- st_intersection(sites, lands)
-
-## Properties with data
-studyAreas <- lands[lands$Name %in% out$Name,]
 
 ### Function to convert bounds to polygon
 makePolygon <- function(x){
@@ -47,14 +32,14 @@ dataColumns <- c("agg_day_period","agg_time_period","month","geography",
 mapbox <- read.csv("data//Mapbox//mapboxJunJulyAug2020.csv",
                    header=F,
                    skip=startIter,
-                   nrows=131933,
+                   nrows=batchRows,
                    col.names=dataColumns)
 
 
 outPoly <- data.frame()
 for(i in 1:nrow(mapbox)){
   tempPoly <- makePolygon(mapbox[i,"bounds"])
-  mapboxMatch <- st_intersection(studyAreas, tempPoly)
+  mapboxMatch <- st_intersection(lands, tempPoly)
   if(nrow(mapboxMatch)==0){
     next
   } else{
