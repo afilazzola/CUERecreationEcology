@@ -3,6 +3,9 @@
 ## Libraries
 library(tidyverse)
 library(gridExtra)
+library(raster)
+library(sf)
+library(rgdal)
 
 ## Data
 mapbox <- read.csv("out//data//MapboxSummaryData.csv")
@@ -168,7 +171,7 @@ ylab("Percent area with any human activity") +
  geom_text()
 plot5
 
-ggsave("figs//Figure2Trails.pdf", arrangeGrob(plot3, plot4, plot5, ncol=3), width=11, height=5.5)
+ggsave("figs//Figure2Trails.pdf", arrangeGrob(plot3, plot4, plot5, ncol=3), width=16, height=5.5)
 
 
 
