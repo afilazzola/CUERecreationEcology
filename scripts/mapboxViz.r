@@ -157,7 +157,8 @@ plot7 <-  ggplot(AccessibilityTest, aes(x=open, y = closed, color = dayOfWeek)) 
     theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) 
 plot7
 
-m4 <- lm(TrailActivityPercent ~ HumanMobilePercent, data=mapbox)
+m4 <- lm(TrailActivityPercent ~ HumanMobilePercent,
+    data=mapbox %>% filter(accessibility == "open" & dayOfWeek == "weekend"))
 summary(m4)
 
 ## Comparison of on trail use to general human mobile
@@ -270,6 +271,22 @@ IQRModels
 
 
 ##### Compare activity with ELC 
+
+sf::sf_use_s2(FALSE)
+
+ELC <- readOGR(layer="ELC", dsn="data//ELC")
+ELC <- spTransform(ELC, CRS="+proj=longlat +datum=WGS84 +no_defs") ## switch to lat lon
+ELC <- st_as_sf(ELC)
+
+## ELC per property
+ELCCH <- st_intersection(ELC, lands)
+ELCsitepatterns <- ELCCH %>% 
+  mutate(ELCarea = as.numeric(st_area(ELCCH))) %>% 
+  group_by(Name, Class_Desc) %>% 
+  summarize(totalELCArea = sum(ELCarea)) %>% 
+  data.frame() %>% 
+  dplyr::select(-geometry)
+
 
 #### Peak hours for mapbox
 
