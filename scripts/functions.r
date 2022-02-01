@@ -1,5 +1,63 @@
 #### Functions
 
+
+### Function to Mapbox convert bounds to polygon
+makePolygon <- function(x){
+  bbox <- as.numeric(strsplit(x, split=",")[[1]]) ## extract boundaries
+  e <- as(raster::extent(bbox[1],bbox[3],bbox[2],bbox[4]), "SpatialPolygons") ## convert to polygon
+  proj4string(e) <- "+proj=longlat +datum=WGS84 +no_defs" ## assign CRS
+  e <- st_as_sf(e) ## convert to SF data class
+
+}
+
+
+
+##### Find SF match for mapbox file
+
+spatial_Mapbox_Find <- function(inpath = ".", MatchSites, ## matching spatial file
+  mapboxFilepath, outpath, ## mapbox output
+  startRow = 1, lengthrow = 100000, arrayIter = 1) {## "CHLands"
+
+require(raster)
+require(rgdal)
+require(sf)
+
+## List lands
+lands <- readOGR(layer=MatchSites, dsn=inpath)
+lands <- st_as_sf(lands)
+
+
+## Load iteration
+arrayIter <- as.numeric(commandArgs(trailingOnly = TRUE))
+startIter <- startRow+(lengthrow*arrayIter)
+batchRows <- lengthrow
+
+#### Connect Mapbox polygons
+dataColumns <- c("agg_day_period","agg_time_period","month","geography",
+                 "bounds","xlat","xlon","activity_index_total")
+mapbox <- read.csv(mapboxFilepath,
+                   header=F,
+                   skip=startIter,
+                   nrows=batchRows,
+                   col.names=dataColumns)
+
+
+outPoly <- data.frame()
+for(i in 1:nrow(mapbox)){
+  tempPoly <- makePolygon(mapbox[i,"bounds"])
+  mapboxMatch <- st_intersection(lands, tempPoly)
+  if(nrow(mapboxMatch)==0){
+    next
+  } else{
+    polyData <- mapbox[i,]
+  }
+  outPoly <- rbind(outPoly, polyData)
+}
+
+write.csv(outPoly, paste0(outpath,"/MapboxArray",arrayIter,".csv"), row.names=FALSE)
+}
+
+
 ###### GBIF lookup of species name
 require(rgbif)
 getTaxaInfo <- function(genusVector) {

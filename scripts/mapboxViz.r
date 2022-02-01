@@ -194,18 +194,22 @@ ggsave("figs/Figure1Activity.pdf", arrangeGrob(plot1, plot2), height=13)
 biodata <- read.csv("data//biodiversityData//summarizedSitelevelData.csv") %>% 
     rename(Name = PropertyName)
 
-bioMapbox <- biodata %>% right_join(mapbox)
+bioMapbox <- biodata %>% 
+    right_join(mapbox) %>%
+    filter(!(community %in% c("birds","NA"))
 
 
 ## Richness
-ggplot(bioMapbox %>%  filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods"), 
+ggplot(bioMapbox %>%  filter(accessibility == "open" & dayOfWeek == "weekend"), 
     aes(x = activityDensityLog, y = RichnessAVG,  label=Name)) +
     facet_wrap(~community, scales="free") + geom_text(aes(color = Area_Type)) + 
-    geom_smooth(method = "glm", color="black", method.args = list(family=gaussian(link = "log"))) +
-    theme_classic() + theme(text = element_text(size = 16)) + 
+    # geom_smooth(method = "glm", color="black", method.args = list(family=gaussian(link = "log"))) +
+    theme_classic() +
+    theme(text = element_text(size = 16),legend.position = c(0.9, 0.9)) + 
     scale_colour_manual(values=c("#999999", "#E69F00", "#0c0d0e")) +
-    ylab("Average annual species richness") + xlab("Mobile cell activity density") 
-save_PDF("activityDensity.pdf", setWidth = 14)
+    ylab("Average annual species richness") + xlab("Mobile cell activity density") +
+    xlim(-50,500)
+save_PDF("figs/Figure5LTERplants.pdf", setWidth = 10)
 
 activityModels <- bioMapbox %>%
     filter(accessibility == "open" & community != "NA" & dayOfWeek == "weekend" & Name != "Wildflower Woods") %>% 

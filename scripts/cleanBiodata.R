@@ -4,6 +4,8 @@
 library(tidyverse)
 library(vegan)
 
+source("scripts/functions.r")
+
 ## Site code info
 siteCodes <- read.csv("data//biodiversityData//CHsitenames.csv")
 

@@ -134,19 +134,3 @@ write.csv(MapboxDataOut, "out//data//MapboxSummaryData.csv", row.names=F)
 
 
 
-#### Connect Mapbox data with ELC observations
-sf::sf_use_s2(FALSE)
-
-ELC <- readOGR(layer="ELC", dsn="data//ELC")
-ELC <- spTransform(ELC, CRS="+proj=longlat +datum=WGS84 +no_defs") ## switch to lat lon
-ELC <- st_as_sf(ELC)
-
-## ELC per property
-ELCCH <- st_intersection(ELC, lands)
-ELCsitepatterns <- ELCCH %>% 
-  mutate(ELCarea = as.numeric(st_area(ELCCH))) %>% 
-  group_by(Name, Class_Desc) %>% 
-  summarize(totalELCArea = sum(ELCarea)) %>% 
-  data.frame() %>% 
-  dplyr::select(-geometry)
-
