@@ -1,5 +1,5 @@
 ---
-title: Examining human activity patterns in urban green spaces for Conservation Halton using anonymmized mobile cell data
+title: Examining human activity patterns in urban green spaces for Conservation Halton using anonymized mobile cell data
 date: "2022"
 output:
   html_document:
@@ -16,12 +16,12 @@ editor_options:
 ![](greenspace.jpg)
 
 ### Contributors 
-[Alessandro Filazzola](https://www.filazzola.info/)
-[Scott MacIvor](https://www.macivorlab.ca/)
-[Marc Johnson](https://evoecolab.wordpress.com/)
-[Andrea Dunn](https://www.conservationhalton.ca/)
-[Kim Barrett](https://www.conservationhalton.ca/)
-[Garland Xie](https://garlandxie.netlify.app/)
+- [Alessandro Filazzola](https://www.filazzola.info/)
+- [Garland Xie](https://garlandxie.netlify.app/)
+- [Kim Barrett](https://www.conservationhalton.ca/)
+- [Andrea Dunn](https://www.conservationhalton.ca/)
+- [Marc Johnson](https://evoecolab.wordpress.com/)
+- [Scott MacIvor](https://www.macivorlab.ca/)
 
 ###  Datasets
 Data has been aquired through a collaboration with [Mapbox](https://www.mapbox.com/movement-data) and [Conservation Halton](https://conservationhalton-camaps.opendata.arcgis.com/). 
