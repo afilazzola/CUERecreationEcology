@@ -12,6 +12,13 @@ mapbox <- read.csv("out//data//MapboxSummaryData.csv")
 
 ## Functions
 source("scripts/functions.r")
+se <- function(x) { sd(x, na.rm = T) / sqrt(length(x[!is.na(x)]))}
+
+### General patterns
+mapbox %>% 
+    distinct(Name, HumanMobilePercent) %>% 
+    summarize(meanArea = mean(HumanMobilePercent), error = se(HumanMobilePercent))
+
 
 plot1 <- ggplot(mapbox, aes(x=accessibility, y=avgLogActivity, fill=dayOfWeek)) +
     geom_boxplot() + theme_classic() +
@@ -55,6 +62,12 @@ lmOut <- effects::effect("dailyAdults:dayOfWeek ", m1,
     xlevels = list(dailyAdults = seq(150,550,50))) %>% 
     data.frame()
 
+mapboxParkReservations %>% 
+    filter(accessibility == "open") %>% 
+    distinct(Name, dayOfWeek, avgLogActivity) %>% 
+    spread(dayOfWeek, avgLogActivity) %>% 
+    summarize(mean(weekend)/mean(weekday))
+
 plot2 <- ggplot(mapboxParkReservations %>% filter(Name != "Mountsberg"),
  aes(x = dailyAdults, y =avgLogActivity, color=dayOfWeek, label = Name)) +
  scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
@@ -92,6 +105,7 @@ anova(m2)
 lm2Out <- effects::effect("trailDensity", m2, 
     xlevels = list(trailDensity = -1:5)) %>% 
     data.frame()
+
 
 
 plot3 <- ggplot(mapboxTrails %>% filter(accessibility == "open"),
@@ -273,6 +287,20 @@ IQRModels <- bioMapbox %>%
     unnest(fit)
 IQRModels
 
+#### Peak hours for mapbox
+
+
+## Load just peak activity from mapbox
+MapboxtimingAdjusted <-  readOGR(dsn="data//Mapbox", layer="MapboxAdjustedActivity")
+MapboxtimingAdjusted <- st_as_sf(MapboxtimingAdjusted)
+
+maxActivity <- MapboxtimingAdjusted %>% 
+    group_by(bounds) %>% 
+    summarize(peakActivity = max(areaAdjActivity)) %>% 
+    select(-bounds)
+
+# st_write(maxActivity,dsn="data//Mapbox", layer="test", driver="ESRI Shapefile")
+
 
 ##### Compare activity with ELC 
 
@@ -283,7 +311,7 @@ ELC <- spTransform(ELC, CRS="+proj=longlat +datum=WGS84 +no_defs") ## switch to 
 ELC <- st_as_sf(ELC)
 
 ## ELC per property
-ELCCH <- st_intersection(ELC, lands)
+ELCCH <- st_intersection(ELC, lands) 
 ELCsitepatterns <- ELCCH %>% 
   mutate(ELCarea = as.numeric(st_area(ELCCH))) %>% 
   group_by(Name, Class_Desc) %>% 
@@ -292,38 +320,52 @@ ELCsitepatterns <- ELCCH %>%
   dplyr::select(-geometry)
 
 
-#### Peak hours for mapbox
-
-maxActivity <- MapboxtimingAdjusted %>% 
-    group_by(bounds) %>% 
-    summarize(peakActivity = max(areaAdjActivity)) %>% 
-    select(-bounds)
-
-# st_write(maxActivity,dsn="data//Mapbox", layer="test", driver="ESRI Shapefile")
-
-
-
-## Load just peak activity from mapbox
-MapboxtimingAdjusted <-  readOGR(dsn="data//Mapbox", layer="MapboxAdjustedActivity")
-MapboxtimingAdjusted <- st_as_sf(MapboxtimingAdjusted)
-
-## crop to lands
-ELCmapbox <- st_intersection(MapboxtimingAdjusted, ELC)
-ELCMapboxPatterns <- ELCmapbox %>% 
-  mutate(propHumanActivity =  area/SHAPE_A) %>% 
-  mutate(ELCarea = as.numeric(st_area(ELCmapbox))) %>% 
+ELCmapboxOverlap <- st_intersection(ELC, lands) %>% 
+  mutate(ELCarea = as.numeric(st_area(.))) %>% 
   group_by(Name, Class_Desc) %>% 
-  summarize(totalActivity = mean(arAdjAc),
-    totalHumanActivity = sum(propHumanActivity),
-    totalELCused = sum(ELCarea)) %>% 
-  left_join(ELCsitepatterns) %>% 
-mutate(propELCused = totalELCused / totalELCArea)
+  mutate(totalELCArea = sum(ELCarea, na.rm =T)) %>% 
+  st_intersection(., MapboxtimingAdjusted) %>% 
+  distinct(Name, Class_Desc, ELCarea, totalELCArea) %>% 
+    group_by(Name, Class_Desc) %>% 
+    summarize(mapboxIntersectArea = sum(ELCarea),
+        totalELC = unique(totalELCArea))
+
+## Some ELCs have overlapped areas and
+#  thus need both overlap and difference calcualted to get total area
+ELCmapboxOverlap <- st_intersection(MapboxtimingAdjusted, ELC) %>% 
+    mutate(ELCarea = as.numeric(st_area(.))) %>% 
+    data.frame() %>% 
+    distinct(Name, Class_Desc, ELCarea) %>% 
+    group_by(Name, Class_Desc) %>% 
+    summarize(mapboxIntersectArea = sum(ELCarea))
 
 
-plot1 <- ggplot(ELCMapboxPatterns, aes(x=Class_Desc, y= totalHumanActivity)) + geom_boxplot()+
-  coord_flip() + theme_classic() + xlab("") + ylab("Percent of human activity")
-plot2 <- ggplot(ELCMapboxPatterns, aes(x=Class_Desc, y= propELCused)) + geom_boxplot()+
-  coord_flip() + theme_classic() + xlab("") + ylab("Percent of ELC class used")
+## Joined
+sitePatterns <- ELCmapboxOverlap %>% 
+    left_join(ELCsitepatterns) %>% 
+    left_join(lands) %>% 
+    mutate(propELCcover = mapboxIntersectArea / totalELCArea,
+        propAreaCover = mapboxIntersectArea/SHAPE_Area)
+
+
+## summarized patterns by ELC
+meanELCpatterns <- sitePatterns %>%
+    group_by(Class_Desc) %>% 
+    summarize(meanELCcover = mean(propELCcover, na.rm =T),
+        errorELCcover = se(propELCcover),
+        meanPropCover = mean(propAreaCover, na.rm =T),
+        errorPropCover = se(propAreaCover)) %>% 
+    filter(!is.na(Class_Desc)) %>%
+    filter(Class_Desc != "Non ELC Code")
+
+plot1 <- ggplot(meanELCpatterns, aes(x=Class_Desc, y= meanPropCover)) + 
+geom_bar(stat = "identity", fill = "#E69F00", color = "black") + 
+geom_errorbar(aes(ymin = meanPropCover - errorPropCover, ymax = meanPropCover + errorPropCover), width = 0) +
+  coord_flip() + theme_classic() + xlab("") + ylab("Proportion of human activity")
+plot2 <- ggplot(meanELCpatterns, aes(x=Class_Desc, y= meanELCcover)) + 
+geom_bar(stat = "identity", fill = "#E69F00", color = "black") +
+geom_errorbar(aes(ymin = meanELCcover - errorELCcover, ymax = meanELCcover + errorELCcover), width = 0) +
+  coord_flip() + theme_classic() + xlab("") + ylab("Proportion of ELC class used")
 
 ## Does activity increase usage of any particular space
 activityPatterns <- ELCMapboxPatterns  %>%
