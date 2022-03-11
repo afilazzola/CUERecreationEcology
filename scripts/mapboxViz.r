@@ -319,19 +319,13 @@ ELCsitepatterns <- ELCCH %>%
   data.frame() %>% 
   dplyr::select(-geometry)
 
+## Proportion of the property
+ELCprop <- ELCsitepatterns %>% 
+    group_by(Name) %>% 
+    mutate(totalArea = sum(totalELCArea)) %>% 
+    mutate(relativeArea = totalELCArea/totalArea)
 
-ELCmapboxOverlap <- st_intersection(ELC, lands) %>% 
-  mutate(ELCarea = as.numeric(st_area(.))) %>% 
-  group_by(Name, Class_Desc) %>% 
-  mutate(totalELCArea = sum(ELCarea, na.rm =T)) %>% 
-  st_intersection(., MapboxtimingAdjusted) %>% 
-  distinct(Name, Class_Desc, ELCarea, totalELCArea) %>% 
-    group_by(Name, Class_Desc) %>% 
-    summarize(mapboxIntersectArea = sum(ELCarea),
-        totalELC = unique(totalELCArea))
-
-## Some ELCs have overlapped areas and
-#  thus need both overlap and difference calcualted to get total area
+##  thus need both overlap and difference calcualted to get total area
 ELCmapboxOverlap <- st_intersection(MapboxtimingAdjusted, ELC) %>% 
     mutate(ELCarea = as.numeric(st_area(.))) %>% 
     data.frame() %>% 
@@ -339,13 +333,12 @@ ELCmapboxOverlap <- st_intersection(MapboxtimingAdjusted, ELC) %>%
     group_by(Name, Class_Desc) %>% 
     summarize(mapboxIntersectArea = sum(ELCarea))
 
-
 ## Joined
 sitePatterns <- ELCmapboxOverlap %>% 
-    left_join(ELCsitepatterns) %>% 
+    left_join(ELCprop) %>% 
     left_join(lands) %>% 
-    mutate(propELCcover = mapboxIntersectArea / totalELCArea,
-        propAreaCover = mapboxIntersectArea/SHAPE_Area)
+    mutate(propAreaCover = mapboxIntersectArea/SHAPE_Area,
+        propELCcover = propAreaCover/relativeArea)
 
 
 ## summarized patterns by ELC
@@ -367,14 +360,16 @@ geom_bar(stat = "identity", fill = "#E69F00", color = "black") +
 geom_errorbar(aes(ymin = meanELCcover - errorELCcover, ymax = meanELCcover + errorELCcover), width = 0) +
   coord_flip() + theme_classic() + xlab("") + ylab("Proportion of ELC class used")
 
-## Does activity increase usage of any particular space
-activityPatterns <- ELCMapboxPatterns  %>%
-    group_by(Class_Desc) %>%
-    do(fit = broom::tidy(lm(totalHumanActivity ~ totalActivity,
-                            data = .))) %>%
-    unnest(fit)
-activityPatterns %>% filter(term == "totalActivity") %>% arrange(p.value)
-
 ggsave("figs/ELCuse.pdf", 
     arrangeGrob(plot1, plot2), 
     height=10, width=8)
+
+
+
+#### Appendix Table of properties
+landsWithCentroid <- lands  %>% 
+    st_centroid(lands$geometry)
+properties <- landsWithCentroid %>% 
+    data.frame() %>% 
+    dplyr::select(-OBJECTID, -Prop_Code)
+write.csv(properties, "figs/TableS2.csv", row.names = F)
