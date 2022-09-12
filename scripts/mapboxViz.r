@@ -58,6 +58,7 @@ m1 <- lm(avgLogActivity ~ dailyAdults * dayOfWeek,
     data= mapboxParkReservations %>% filter(Name != "Mountsberg"))
 anova(m1)
 summary(m1)
+emmeans::emtrends(m1, pairwise ~ dayOfWeek, var = "dailyAdults")
 lmOut <- effects::effect("dailyAdults:dayOfWeek ", m1, 
     xlevels = list(dailyAdults = seq(150,550,50))) %>% 
     data.frame()
@@ -76,6 +77,8 @@ plot2 <- ggplot(mapboxParkReservations %>% filter(Name != "Mountsberg"),
  ylab("Average Mobile Activity (log-transformed)")  +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) 
 plot2
+ggsave("figs/Figure2Reservation.pdf", plot2, height = 6, width = 7)
+
 
  ### Trail density comparisons with mapbox
 lands <- readOGR(layer="CHLands", dsn="data//CHProperties")
@@ -186,7 +189,7 @@ ylab("Percent area with any human activity") +
  geom_text()
 plot5
 
-ggsave("figs//Figure2Trails.pdf", arrangeGrob(plot3, plot4, plot5, ncol=3), width=16, height=5.5)
+ggsave("figs//Figure3Trails.pdf", arrangeGrob(plot3, plot4, plot5, ncol=3), width=16, height=5.5)
 
 
 
@@ -199,7 +202,6 @@ parkType
 write.csv(parkType, "figs//Table1.csv", row.names=F)
 
 ## Save output plots
-ggsave("figs/Figure1Activity.pdf", arrangeGrob(plot1, plot2), height=13)
 
 
 
