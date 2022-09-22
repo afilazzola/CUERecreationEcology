@@ -1,0 +1,200 @@
+"","Name","dayOfWeek","accessibility","Area_Type","Managed","HumanMobilePercent","activityDensityLog","IQRLogActivity","TrailActivityPercent"
+"1","Administration","weekday","closed","Other","Non-Managed Land",99.88,1222.09,1.9,NA
+"2","Administration","weekday","open","Other","Non-Managed Land",99.88,2055.83,1.21,NA
+"3","Administration","weekend","closed","Other","Non-Managed Land",99.88,779.61,0.92,NA
+"4","Administration","weekend","open","Other","Non-Managed Land",99.88,2255.03,1.46,NA
+"5","Albert","weekday","closed","Reserve Area","Non-Managed Land",16.26,-5.95,5.88,NA
+"6","Albert","weekday","open","Reserve Area","Non-Managed Land",16.26,85.57,1.51,NA
+"7","Albert","weekend","closed","Reserve Area","Non-Managed Land",16.26,16.29,0,NA
+"8","Albert","weekend","open","Reserve Area","Non-Managed Land",16.26,88.23,2.41,NA
+"9","Andrusyshyn","weekday","closed","Reserve Area","Non-Managed Land",54.62,26,6.78,NA
+"10","Andrusyshyn","weekday","open","Reserve Area","Non-Managed Land",54.62,-206.27,10.67,NA
+"11","Andrusyshyn","weekend","closed","Reserve Area","Non-Managed Land",54.62,283.06,1.96,NA
+"12","Andrusyshyn","weekend","open","Reserve Area","Non-Managed Land",54.62,573.6,1.28,NA
+"13","Bronte Gorge","weekday","closed","Natural Area","Non-Managed Land",25.72,78.75,0.76,NA
+"14","Bronte Gorge","weekday","open","Natural Area","Non-Managed Land",25.72,147.39,1.76,NA
+"15","Bronte Gorge","weekend","closed","Natural Area","Non-Managed Land",25.72,14.25,0,NA
+"16","Bronte Gorge","weekend","open","Natural Area","Non-Managed Land",25.72,92.03,0.5,NA
+"17","Burlington Beach","weekday","closed","Conservation Area","Non-Managed Land",6.58,56.74,3.55,NA
+"18","Burlington Beach","weekday","open","Conservation Area","Non-Managed Land",6.58,445.99,1.21,NA
+"19","Burlington Beach","weekend","closed","Conservation Area","Non-Managed Land",6.58,173.79,1.34,NA
+"20","Burlington Beach","weekend","open","Conservation Area","Non-Managed Land",6.58,627.74,1.25,NA
+"21","Campbellville","weekday","closed","Conservation Area","Non-Managed Land",8.15,205.91,0,NA
+"22","Campbellville","weekday","open","Conservation Area","Non-Managed Land",8.15,-275.02,5.27,NA
+"23","Campbellville","weekend","closed","Conservation Area","Non-Managed Land",8.15,-612.81,0,NA
+"24","Campbellville","weekend","open","Conservation Area","Non-Managed Land",8.15,-274.53,6.14,NA
+"25","Carlisle","weekday","closed","Conservation Area","Non-Managed Land",44.76,94.01,0.94,NA
+"26","Carlisle","weekday","open","Conservation Area","Non-Managed Land",44.76,250.68,1.64,NA
+"27","Carlisle","weekend","closed","Conservation Area","Non-Managed Land",44.76,61.36,3.27,NA
+"28","Carlisle","weekend","open","Conservation Area","Non-Managed Land",44.76,205.5,1.72,NA
+"29","Clappison Woods","weekday","closed","Conservation Area","Non-Managed Land",96.15,85.3,1.4,NA
+"30","Clappison Woods","weekday","open","Conservation Area","Non-Managed Land",96.15,153.46,0.6,NA
+"31","Clappison Woods","weekend","closed","Conservation Area","Non-Managed Land",96.15,71.16,2.01,NA
+"32","Clappison Woods","weekend","open","Conservation Area","Non-Managed Land",96.15,168.63,0.5,NA
+"33","Cockshutt","weekday","closed","Other","Non-Managed Land",28.02,675.73,1.97,NA
+"34","Cockshutt","weekday","open","Other","Non-Managed Land",28.02,414.5,0,NA
+"35","Cockshutt","weekend","open","Other","Non-Managed Land",28.02,-1849,0,NA
+"36","Crawford Lake","weekday","closed","Conservation Area","Managed Land",64.06,19.65,2.23,65.33
+"37","Crawford Lake","weekday","open","Conservation Area","Managed Land",64.06,38.77,0.55,65.33
+"38","Crawford Lake","weekend","closed","Conservation Area","Managed Land",64.06,17.26,1.84,65.33
+"39","Crawford Lake","weekend","open","Conservation Area","Managed Land",64.06,42,0.39,65.33
+"40","Croft","weekday","closed","Reserve Area","Non-Managed Land",9.85,46.35,1.02,NA
+"41","Croft","weekday","open","Reserve Area","Non-Managed Land",9.85,57,0.95,NA
+"42","Croft","weekend","open","Reserve Area","Non-Managed Land",9.85,78.69,0.46,NA
+"43","Escarpment","weekday","closed","Natural Area","Non-Managed Land",60.99,58.69,1.98,NA
+"44","Escarpment","weekday","open","Natural Area","Non-Managed Land",60.99,205.48,2.15,NA
+"45","Escarpment","weekend","closed","Natural Area","Non-Managed Land",60.99,78.07,0.78,NA
+"46","Escarpment","weekend","open","Natural Area","Non-Managed Land",60.99,216.32,2.29,NA
+"47","Esquesing","weekday","closed","Natural Area","Non-Managed Land",39.2,291.1,0.37,NA
+"48","Esquesing","weekday","open","Natural Area","Non-Managed Land",39.2,410.77,0.86,NA
+"49","Esquesing","weekend","closed","Natural Area","Non-Managed Land",39.2,189.67,1.47,NA
+"50","Esquesing","weekend","open","Natural Area","Non-Managed Land",39.2,210.12,2.72,NA
+"51","Forest Creek Estates","weekday","closed","Natural Area","Non-Managed Land",44.42,191.6,1.75,NA
+"52","Forest Creek Estates","weekday","open","Natural Area","Non-Managed Land",44.42,248.59,1.49,NA
+"53","Forest Creek Estates","weekend","closed","Natural Area","Non-Managed Land",44.42,-48.47,11.9,NA
+"54","Forest Creek Estates","weekend","open","Natural Area","Non-Managed Land",44.42,229.32,0.37,NA
+"55","Forster & Burt","weekday","closed","Other","Non-Managed Land",35.64,525.69,1.4,NA
+"56","Forster & Burt","weekday","open","Other","Non-Managed Land",35.64,1138.41,1.48,NA
+"57","Forster & Burt","weekend","closed","Other","Non-Managed Land",35.64,334.55,0.61,NA
+"58","Forster & Burt","weekend","open","Other","Non-Managed Land",35.64,969.09,1.07,NA
+"59","Fuciarelli","weekday","closed","Reserve Area","Non-Managed Land",5.54,11.64,1.56,NA
+"60","Fuciarelli","weekday","open","Reserve Area","Non-Managed Land",5.54,5.58,4.08,NA
+"61","Fuciarelli","weekend","closed","Reserve Area","Non-Managed Land",5.54,1.22,0,NA
+"62","Fuciarelli","weekend","open","Reserve Area","Non-Managed Land",5.54,1.42,9.34,NA
+"63","Glenorchy","weekday","closed","Conservation Area","Non-Managed Land",45.96,17.04,0.97,18.3
+"64","Glenorchy","weekday","open","Conservation Area","Non-Managed Land",45.96,28.72,0.38,18.3
+"65","Glenorchy","weekend","closed","Conservation Area","Non-Managed Land",45.96,14.74,1.34,18.3
+"66","Glenorchy","weekend","open","Conservation Area","Non-Managed Land",45.96,28.63,0.86,18.3
+"67","Grindstone Creek","weekday","closed","Natural Area","Non-Managed Land",94.19,99.97,2.18,NA
+"68","Grindstone Creek","weekday","open","Natural Area","Non-Managed Land",94.19,189.46,0.59,NA
+"69","Grindstone Creek","weekend","closed","Natural Area","Non-Managed Land",94.19,60.88,2.62,NA
+"70","Grindstone Creek","weekend","open","Natural Area","Non-Managed Land",94.19,203.45,0.48,NA
+"71","Guelph Junction","weekday","closed","Reserve Area","Non-Managed Land",40.68,70.54,1.28,NA
+"72","Guelph Junction","weekday","open","Reserve Area","Non-Managed Land",40.68,170.05,1.64,NA
+"73","Guelph Junction","weekend","closed","Reserve Area","Non-Managed Land",40.68,-3.98,7.35,NA
+"74","Guelph Junction","weekend","open","Reserve Area","Non-Managed Land",40.68,92.09,3.32,NA
+"75","Hager Rambo","weekday","closed","Other","Non-Managed Land",4.49,231.51,1.47,NA
+"76","Hager Rambo","weekday","open","Other","Non-Managed Land",4.49,383.25,1.66,NA
+"77","Hager Rambo","weekend","closed","Other","Non-Managed Land",4.49,-168.47,8.87,NA
+"78","Hager Rambo","weekend","open","Other","Non-Managed Land",4.49,223.38,4.11,NA
+"79","Hilton Falls","weekday","closed","Conservation Area","Managed Land",64.26,12.64,2.02,78.59
+"80","Hilton Falls","weekday","open","Conservation Area","Managed Land",64.26,23.12,0.37,78.59
+"81","Hilton Falls","weekend","closed","Conservation Area","Managed Land",64.26,12.45,1.68,78.59
+"82","Hilton Falls","weekend","open","Conservation Area","Managed Land",64.26,24.79,0.35,78.59
+"83","Kassam","weekday","closed","Reserve Area","Non-Managed Land",46.99,47.16,2.85,NA
+"84","Kassam","weekday","open","Reserve Area","Non-Managed Land",46.99,7.03,6.62,NA
+"85","Kassam","weekend","closed","Reserve Area","Non-Managed Land",46.99,31.43,0,NA
+"86","Kassam","weekend","open","Reserve Area","Non-Managed Land",46.99,298.32,1.94,NA
+"87","Kelso","weekday","closed","Conservation Area","Managed Land",72.41,18.59,2.8,72.9
+"88","Kelso","weekday","open","Conservation Area","Managed Land",72.41,33.93,0.51,72.9
+"89","Kelso","weekend","closed","Conservation Area","Managed Land",72.41,19.02,1.69,72.9
+"90","Kelso","weekend","open","Conservation Area","Managed Land",72.41,37.28,0.63,72.9
+"91","Kerncliff","weekday","closed","Conservation Area","Non-Managed Land",70.78,147.74,2.65,NA
+"92","Kerncliff","weekday","open","Conservation Area","Non-Managed Land",70.78,293.35,0.43,NA
+"93","Kerncliff","weekend","closed","Conservation Area","Non-Managed Land",70.78,161.94,1.53,NA
+"94","Kerncliff","weekend","open","Conservation Area","Non-Managed Land",70.78,302.26,0.93,NA
+"95","Kilbride","weekday","closed","Natural Area","Non-Managed Land",27.73,34.99,1.04,0.53
+"96","Kilbride","weekday","open","Natural Area","Non-Managed Land",27.73,75.05,0.8,0.53
+"97","Kilbride","weekend","closed","Natural Area","Non-Managed Land",27.73,29.62,1.62,0.53
+"98","Kilbride","weekend","open","Natural Area","Non-Managed Land",27.73,67.36,0.53,0.53
+"99","Kiwanis","weekday","closed","Natural Area","Non-Managed Land",29.3,-0.12,6.94,NA
+"100","Kiwanis","weekday","open","Natural Area","Non-Managed Land",29.3,40.46,2.83,NA
+"101","Kiwanis","weekend","open","Natural Area","Non-Managed Land",29.3,55.67,1.54,NA
+"102","Knight","weekday","closed","Reserve Area","Non-Managed Land",4.96,20.79,0,NA
+"103","Knight","weekday","open","Reserve Area","Non-Managed Land",4.96,-36.81,4.5,NA
+"104","Knight","weekend","closed","Reserve Area","Non-Managed Land",4.96,21.22,0,NA
+"105","Knight","weekend","open","Reserve Area","Non-Managed Land",4.96,13.74,0,NA
+"106","Lake Medad","weekday","closed","Reserve Area","Non-Managed Land",27.99,15.89,0.07,NA
+"107","Lake Medad","weekday","open","Reserve Area","Non-Managed Land",27.99,87.72,3.85,NA
+"108","Lake Medad","weekend","open","Reserve Area","Non-Managed Land",27.99,56.29,5.64,NA
+"109","Medad Valley","weekday","closed","Reserve Area","Non-Managed Land",54.45,58.04,0.71,NA
+"110","Medad Valley","weekday","open","Reserve Area","Non-Managed Land",54.45,94.11,7.5,NA
+"111","Medad Valley","weekend","open","Reserve Area","Non-Managed Land",54.45,138.15,1.81,NA
+"112","Middletown","weekday","open","Reserve Area","Non-Managed Land",11.86,77,3.04,NA
+"113","Middletown","weekend","closed","Reserve Area","Non-Managed Land",11.86,-372.66,0,NA
+"114","Middletown","weekend","open","Reserve Area","Non-Managed Land",11.86,234.44,0,NA
+"115","Milton","weekday","closed","Other","Non-Managed Land",37.32,349.37,1.87,NA
+"116","Milton","weekday","open","Other","Non-Managed Land",37.32,539.59,1.39,NA
+"117","Milton","weekend","closed","Other","Non-Managed Land",37.32,268.54,0.76,NA
+"118","Milton","weekend","open","Other","Non-Managed Land",37.32,358.91,2.68,NA
+"119","Moffat-Badenoch Swamp","weekday","closed","Natural Area","Non-Managed Land",36.08,35.27,1.07,NA
+"120","Moffat-Badenoch Swamp","weekday","open","Natural Area","Non-Managed Land",36.08,56.2,1.43,NA
+"121","Moffat-Badenoch Swamp","weekend","closed","Natural Area","Non-Managed Land",36.08,24.27,0.73,NA
+"122","Moffat-Badenoch Swamp","weekend","open","Natural Area","Non-Managed Land",36.08,60.84,0.56,NA
+"123","Morrison-Wedgewood","weekday","closed","Other","Non-Managed Land",22.61,167.48,0.98,NA
+"124","Morrison-Wedgewood","weekday","open","Other","Non-Managed Land",22.61,405.92,0.76,NA
+"125","Morrison-Wedgewood","weekend","closed","Other","Non-Managed Land",22.61,136.59,2.11,NA
+"126","Morrison-Wedgewood","weekend","open","Other","Non-Managed Land",22.61,311.49,2.29,NA
+"127","Morriston","weekday","closed","Other","Non-Managed Land",10.17,-339.37,0,NA
+"128","Morriston","weekday","open","Other","Non-Managed Land",10.17,-1036.38,0,NA
+"129","Morriston","weekend","open","Other","Non-Managed Land",10.17,486.95,0,NA
+"130","Mount Nemo","weekday","closed","Conservation Area","Managed Land",58.77,33.19,1.2,26.85
+"131","Mount Nemo","weekday","open","Conservation Area","Managed Land",58.77,62.53,0.44,26.85
+"132","Mount Nemo","weekend","closed","Conservation Area","Managed Land",58.77,24.65,3.9,26.85
+"133","Mount Nemo","weekend","open","Conservation Area","Managed Land",58.77,68.64,0.43,26.85
+"134","Mountsberg","weekday","closed","Conservation Area","Managed Land",43.77,11.55,0.87,62.08
+"135","Mountsberg","weekday","open","Conservation Area","Managed Land",43.77,21.25,0.83,62.08
+"136","Mountsberg","weekend","closed","Conservation Area","Managed Land",43.77,11.99,1.37,62.08
+"137","Mountsberg","weekend","open","Conservation Area","Managed Land",43.77,23.92,1.35,62.08
+"138","Nelson Escarpment Woods","weekday","closed","Natural Area","Non-Managed Land",40.86,109.41,0,NA
+"139","Nelson Escarpment Woods","weekday","open","Natural Area","Non-Managed Land",40.86,-88.54,11.87,NA
+"140","Nelson Escarpment Woods","weekend","closed","Natural Area","Non-Managed Land",40.86,286.14,0.64,NA
+"141","Nelson Escarpment Woods","weekend","open","Natural Area","Non-Managed Land",40.86,345.8,0.67,NA
+"142","Ontario Heritage Trust","weekday","closed","Natural Area","Non-Managed Land",28.12,25.62,2.06,4.73
+"143","Ontario Heritage Trust","weekday","open","Natural Area","Non-Managed Land",28.12,92.73,1.87,4.73
+"144","Ontario Heritage Trust","weekend","closed","Natural Area","Non-Managed Land",28.12,33.25,1.24,4.73
+"145","Ontario Heritage Trust","weekend","open","Natural Area","Non-Managed Land",28.12,62.9,2.24,4.73
+"146","Paiement","weekday","open","Reserve Area","Non-Managed Land",33.76,114.22,1.35,NA
+"147","Paiement","weekend","open","Reserve Area","Non-Managed Land",33.76,82.47,0.02,NA
+"148","Plaikner","weekday","closed","Reserve Area","Non-Managed Land",16.13,25.65,0,NA
+"149","Plaikner","weekday","open","Reserve Area","Non-Managed Land",16.13,62.44,2.23,NA
+"150","Pleasantview","weekday","closed","Natural Area","Non-Managed Land",65.62,99.92,0.74,NA
+"151","Pleasantview","weekday","open","Natural Area","Non-Managed Land",65.62,173.28,0.47,NA
+"152","Pleasantview","weekend","closed","Natural Area","Non-Managed Land",65.62,59.86,2.58,NA
+"153","Pleasantview","weekend","open","Natural Area","Non-Managed Land",65.62,167.52,1.31,NA
+"154","Queen Elizabeth","weekday","closed","Other","Non-Managed Land",2.83,58.76,3.97,NA
+"155","Queen Elizabeth","weekday","open","Other","Non-Managed Land",2.83,733.89,0.96,NA
+"156","Queen Elizabeth","weekend","closed","Other","Non-Managed Land",2.83,77.57,4.26,NA
+"157","Queen Elizabeth","weekend","open","Other","Non-Managed Land",2.83,93.73,6.32,NA
+"158","Rattlesnake Point","weekday","closed","Conservation Area","Managed Land",51.15,20.62,1.3,58.96
+"159","Rattlesnake Point","weekday","open","Conservation Area","Managed Land",51.15,42.71,0.4,58.96
+"160","Rattlesnake Point","weekend","closed","Conservation Area","Managed Land",51.15,17.12,3.3,58.96
+"161","Rattlesnake Point","weekend","open","Conservation Area","Managed Land",51.15,46.25,0.5,58.96
+"162","Robert Edmondson","weekday","closed","Conservation Area","Managed Land",64.12,126.58,1.6,52.82
+"163","Robert Edmondson","weekday","open","Conservation Area","Managed Land",64.12,234.69,2.14,52.82
+"164","Robert Edmondson","weekend","closed","Conservation Area","Managed Land",64.12,-15.76,13.13,52.82
+"165","Robert Edmondson","weekend","open","Conservation Area","Managed Land",64.12,225.3,1.32,52.82
+"166","Roberts Reed","weekday","closed","Reserve Area","Non-Managed Land",14.22,-23.67,0,NA
+"167","Roberts Reed","weekday","open","Reserve Area","Non-Managed Land",14.22,-29.78,9.86,NA
+"168","Roberts Reed","weekend","open","Reserve Area","Non-Managed Land",14.22,34.2,0.21,NA
+"169","Scotch Block","weekday","closed","Other","Non-Managed Land",60.53,51.91,3.35,NA
+"170","Scotch Block","weekday","open","Other","Non-Managed Land",60.53,178.75,2.55,NA
+"171","Scotch Block","weekend","closed","Other","Non-Managed Land",60.53,14.1,7.15,NA
+"172","Scotch Block","weekend","open","Other","Non-Managed Land",60.53,155.95,4.18,NA
+"173","Shanahan","weekday","closed","Natural Area","Non-Managed Land",34.74,44.91,0.9,22.01
+"174","Shanahan","weekday","open","Natural Area","Non-Managed Land",34.74,61.36,1.58,22.01
+"175","Shanahan","weekend","closed","Natural Area","Non-Managed Land",34.74,-1.76,14.98,22.01
+"176","Shanahan","weekend","open","Natural Area","Non-Managed Land",34.74,84.29,1.34,22.01
+"177","Sixteen Valley","weekday","closed","Natural Area","Non-Managed Land",42.25,104.05,0.54,NA
+"178","Sixteen Valley","weekday","open","Natural Area","Non-Managed Land",42.25,194.85,0.82,NA
+"179","Sixteen Valley","weekend","closed","Natural Area","Non-Managed Land",42.25,18.21,4.1,NA
+"180","Sixteen Valley","weekend","open","Natural Area","Non-Managed Land",42.25,120.86,2.66,NA
+"181","Speyside","weekday","closed","Natural Area","Non-Managed Land",37.65,32.66,7.14,NA
+"182","Speyside","weekday","open","Natural Area","Non-Managed Land",37.65,311,1.24,NA
+"183","Speyside","weekend","closed","Natural Area","Non-Managed Land",37.65,47.51,1.33,NA
+"184","Speyside","weekend","open","Natural Area","Non-Managed Land",37.65,82.52,5.1,NA
+"185","Stewart","weekday","closed","Conservation Area","Non-Managed Land",48.7,257.38,1.59,NA
+"186","Stewart","weekday","open","Conservation Area","Non-Managed Land",48.7,517.98,0.51,NA
+"187","Stewart","weekend","closed","Conservation Area","Non-Managed Land",48.7,211.39,1.47,NA
+"188","Stewart","weekend","open","Conservation Area","Non-Managed Land",48.7,525.86,0.83,NA
+"189","Tirion","weekday","closed","Natural Area","Non-Managed Land",45.79,25.98,2.08,NA
+"190","Tirion","weekday","open","Natural Area","Non-Managed Land",45.79,85.21,3.25,NA
+"191","Tirion","weekend","open","Natural Area","Non-Managed Land",45.79,255.46,0.68,NA
+"192","Waterdown Woods","weekday","closed","Conservation Area","Non-Managed Land",65.74,47.56,1.39,NA
+"193","Waterdown Woods","weekday","open","Conservation Area","Non-Managed Land",65.74,96.05,0.71,NA
+"194","Waterdown Woods","weekend","closed","Conservation Area","Non-Managed Land",65.74,42.59,2.17,NA
+"195","Waterdown Woods","weekend","open","Conservation Area","Non-Managed Land",65.74,101.42,1.47,NA
+"196","Wildflower Woods","weekday","closed","Natural Area","Non-Managed Land",55.57,116.48,0.91,NA
+"197","Wildflower Woods","weekday","open","Natural Area","Non-Managed Land",55.57,450.25,0.84,NA
+"198","Wildflower Woods","weekend","closed","Natural Area","Non-Managed Land",55.57,-23.56,6.77,NA
+"199","Wildflower Woods","weekend","open","Natural Area","Non-Managed Land",55.57,287.13,3.35,NA

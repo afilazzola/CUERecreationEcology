@@ -56,7 +56,10 @@ MapboxtimingParkCenter <- Mapboxtiming %>%
 MapboxtimingAdjusted <- Mapboxtiming %>%  
   mutate(area = as.vector(st_area(Mapboxtiming))) %>% 
   filter(!(Mapboxtiming$bounds %in% MapboxtimingParkCenter$bounds)) %>%   ## Drop non-park activity 
-  mutate(areaAdjActivity = activity_index_total * area)
+  mutate(activityIndex = round(activity_index_total, 3)) %>% 
+  mutate(areaAdjActivity = activityIndex * area)
+
+
 
 # st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile")
 
@@ -65,16 +68,16 @@ MapboxtimingAdjusted <- Mapboxtiming %>%
 MapboxSummary <- MapboxtimingAdjusted %>% data.frame() %>% 
                   group_by(Name, month, start_h2, dayOfWeek) %>% 
                   summarize(totalActivity = sum(areaAdjActivity)) 
-lowestActivity <- min(MapboxSummary$totalActivity[MapboxSummary$totalActivity!=0])
-MapboxSummary <- MapboxSummary %>% 
-                  mutate(logActivity = log(totalActivity+lowestActivity)) ## adjust for right skew
+# lowestActivity <- min(MapboxSummary$totalActivity[MapboxSummary$totalActivity!=0])
+# MapboxSummary <- MapboxSummary %>% 
+#                   mutate(logActivity = log(totalActivity+lowestActivity)) ## adjust for right skew
 
 ## Summary statistics
 MapboxStatistics <- MapboxSummary %>% 
                       mutate(accessibility = ifelse(start_h2 < 8 | start_h2 > 17, "closed", "open")) %>% 
                       group_by(Name, dayOfWeek, accessibility) %>% 
-                      summarize(avgLogActivity = sum(logActivity), 
-                      IQRLogActivity = IQR(logActivity))
+                      summarize(avgLogActivity = sum(totalActivity), 
+                      IQRLogActivity = IQR(totalActivity))
 
 ## Refugia - raster pixels with no activity
 uniquePolys <- MapboxtimingAdjusted %>%  distinct(Name, geometry)
@@ -125,7 +128,7 @@ LandsMobileAreaSimplified <- LandsMobileArea %>%
 MapboxDataOut <- MapboxStatistics %>% 
         left_join(LandsMobileAreaSimplified) %>% 
         left_join(trailPatternsSimplified) %>% 
-        mutate(PropertyAreakm2 = SHAPE_Area / 1000000) %>% 
+        mutate(PropertyAreakm2 = SHAPE_Area) %>% 
         mutate(activityDensityLog = avgLogActivity / PropertyAreakm2) %>% 
         data.frame()
 

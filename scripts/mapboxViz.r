@@ -20,17 +20,18 @@ mapbox %>%
     summarize(meanArea = mean(HumanMobilePercent), error = se(HumanMobilePercent))
 
 
-plot1 <- ggplot(mapbox, aes(x=accessibility, y=avgLogActivity, fill=dayOfWeek)) +
+plot1 <- ggplot(mapbox, aes(x=accessibility, y=activityDensityLog, fill=dayOfWeek)) +
     geom_boxplot() + theme_classic() +
     scale_fill_manual(values=c("#E69F00", "#56B4E9")) + 
     xlab("") + ylab("Average Mobile Activity (log-transformed)") + 
-    theme(text = element_text(size = 16), legend.position = c(0.15, 0.9))
+    theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) + 
+    scale_y_log10()
 plot1
 
-ggplot(mapbox, aes(x = reorder(Name, avgLogActivity), y=avgLogActivity)) +
+ggplot(mapbox, aes(x = reorder(Name, activityDensityLog), y=activityDensityLog)) +
  geom_boxplot() + coord_flip() + xlab("") + 
  ylab("Average Mobile Activity (log-transformed)") + theme_classic() +
- theme(text = element_text(size = 16))
+ theme(text = element_text(size = 16)) + scale_y_log10()
 
 
 ggplot(mapbox %>% distinct(Name, HumanMobilePercent), aes(x = reorder(Name, HumanMobilePercent), y = HumanMobilePercent)) +
@@ -54,27 +55,27 @@ mapboxParkReservations <- mapbox %>%
                 right_join(totalParkRes)
 
 ## Test patterns in parks
-m1 <- lm(avgLogActivity ~ dailyAdults * dayOfWeek, 
-    data= mapboxParkReservations %>% filter(Name != "Mountsberg"))
+m1 <- lm(activityDensityLog ~ dailyAdults * dayOfWeek, 
+    data= mapboxParkReservations)
 anova(m1)
 summary(m1)
 emmeans::emtrends(m1, pairwise ~ dayOfWeek, var = "dailyAdults")
 lmOut <- effects::effect("dailyAdults:dayOfWeek ", m1, 
-    xlevels = list(dailyAdults = seq(150,550,50))) %>% 
+    xlevels = list(dailyAdults = seq(50,550,50))) %>% 
     data.frame()
 
 mapboxParkReservations %>% 
     filter(accessibility == "open") %>% 
-    distinct(Name, dayOfWeek, avgLogActivity) %>% 
-    spread(dayOfWeek, avgLogActivity) %>% 
+    distinct(Name, dayOfWeek, activityDensityLog ) %>% 
+    spread(dayOfWeek, activityDensityLog ) %>% 
     summarize(mean(weekend)/mean(weekday))
 
-plot2 <- ggplot(mapboxParkReservations %>% filter(Name != "Mountsberg"),
- aes(x = dailyAdults, y =avgLogActivity, color=dayOfWeek, label = Name)) +
+plot2 <- ggplot(mapboxParkReservations,
+ aes(x = dailyAdults, y =activityDensityLog , color=dayOfWeek)) +
  scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
- geom_line(data=  lmOut ,aes(x  = dailyAdults, y= fit, label = NA), size=1.6) +
- geom_text() + xlim(100, 550) + xlab("Total daily reservations") + 
- ylab("Average Mobile Activity (log-transformed)")  +
+ geom_line(data=  lmOut ,aes(x  = dailyAdults, y= fit), size=1.6) +
+ geom_jitter(size=5, width = 5, height = 0.005)  + xlab("Total daily reservations") +
+ ylab("Activity Density in Green space")  +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) 
 plot2
 ggsave("figs/Figure2Reservation.pdf", plot2, height = 6, width = 7)
