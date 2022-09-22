@@ -72,13 +72,14 @@ mapboxParkReservations %>%
 
 plot2 <- ggplot(mapboxParkReservations,
  aes(x = dailyAdults, y =activityDensityLog , color=dayOfWeek)) +
+  geom_line(aes( group = Name), color = "black", lty = 2) + 
  scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
  geom_line(data=  lmOut ,aes(x  = dailyAdults, y= fit), size=1.6) +
- geom_jitter(size=5, width = 5, height = 0.005)  + xlab("Total daily reservations") +
- ylab("Activity Density in Green space")  +
+ geom_point(size = 4)  + xlab("Total daily reservations") +
+ ylab("Activity Density in Green Space")  +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) 
 plot2
-ggsave("figs/Figure2Reservation.pdf", plot2, height = 6, width = 7)
+ggsave("figs/Figure1Reservation.pdf", plot2, height = 6, width = 7)
 
 
  ### Trail density comparisons with mapbox
@@ -100,27 +101,28 @@ mapboxTrails <- mapbox %>% right_join(trailStats) %>%
                             trailDensity = (trailLength/1000) / (SHAPE_Area/1000000))
 
 ### Model patterns between trail use and human activity
-m2 <- lm(avgLogActivity ~ trailDensity * dayOfWeek, 
+m2 <- lm(activityDensityLog ~ trailDensity * dayOfWeek, 
     data =mapboxTrails %>%  filter(accessibility == "open") %>% 
-        filter(!(Name %in% c("Robert Edmondson", "Shanahan")))) ## drop two smallest parks
+        filter(!(Name %in% c("Robert Edmondson")))) ## drop two smallest parks
 summary(m2)
 anova(m2)
 
 lm2Out <- effects::effect("trailDensity", m2, 
-    xlevels = list(trailDensity = -1:5)) %>% 
+    xlevels = list(trailDensity = seq(0.5,4.5, 0.5))) %>% 
     data.frame()
 
 
 
-plot3 <- ggplot(mapboxTrails %>% filter(accessibility == "open"),
-    aes(x = trailDensity, y = avgLogActivity, color = dayOfWeek, label=Name)) +
-geom_text() +
+plot3 <- ggplot(mapboxTrails %>% filter(accessibility == "open") %>% filter(Name != "Robert Edmondson"),
+    aes(x = trailDensity, y = activityDensityLog, color = dayOfWeek, group = Name)) +
+  geom_line(color = "grey50", lty = 2) +
+geom_point(size = 4) + 
 scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
 xlab("Trail Density (km/km2)") +
  ylab("Average Mobile Activity (log-transformed)") +
- xlim(-1,8) +
+ xlim(0.5,4.5) +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) +
- geom_line(data=  lm2Out ,aes(x  = trailDensity, y= fit, label = NA), color = "grey60", size=1.2) 
+ geom_line(data=  lm2Out, aes(x  = trailDensity, y= fit, group = NA), color = "grey60", size=1.2) 
 plot3
 
 ProportionActivityData <- mapboxTrails %>% 

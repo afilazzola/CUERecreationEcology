@@ -61,7 +61,7 @@ MapboxtimingAdjusted <- Mapboxtiming %>%
 
 
 
-# st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile")
+# st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile", append = F)
 
 
 ## Summarize data by Park
