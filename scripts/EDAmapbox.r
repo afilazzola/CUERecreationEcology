@@ -59,7 +59,12 @@ MapboxtimingAdjusted <- Mapboxtiming %>%
   mutate(activityIndex = round(activity_index_total, 3)) %>% 
   mutate(areaAdjActivity = activityIndex * area)
 
+## Amount of activity removed
+MapboxtimingRemoved <- Mapboxtiming %>% 
+  mutate(OvernightFilter = ifelse(Mapboxtiming$bounds %in% MapboxtimingParkCenter$bounds, "Removed","Kept"))
 
+ggplot(MapboxtimingRemoved, aes(x = reorder(Name, activity_index_total), y = activity_index_total, fill = OvernightFilter)) + 
+  geom_boxplot() + coord_flip() + xlab("") + ylab("Mapbox Activity Index")
 
 # st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile", append = F)
 
