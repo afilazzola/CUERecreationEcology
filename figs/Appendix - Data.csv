@@ -1,0 +1,200 @@
+Name,Weekday,Accessibility,ActivityArea,ActivityDensityIQR,ActivityDensity,ActivityCoverage,AreaType,Managed,GreenSpaceArea,TrailActivityPercent
+Administration,weekday,closed,2131.555288,336.4555375,0.066782603,99.87518022,Other,Non-Managed Land,31917.82286,NA
+Administration,weekday,open,2261.719136,171.6999743,0.070860696,99.87518022,Other,Non-Managed Land,31917.82286,NA
+Administration,weekend,closed,1246.630024,95.33425368,0.039057489,99.87518022,Other,Non-Managed Land,31917.82286,NA
+Administration,weekend,open,3941.416467,283.7385165,0.123486382,99.87518022,Other,Non-Managed Land,31917.82286,NA
+Albert,weekday,closed,56.30310178,23.54789436,0.000181493,16.26459447,Reserve Area,Non-Managed Land,310221.8359,NA
+Albert,weekday,open,1081.150518,99.52460908,0.003485088,16.26459447,Reserve Area,Non-Managed Land,310221.8359,NA
+Albert,weekend,closed,157.4222276,0,0.000507451,16.26459447,Reserve Area,Non-Managed Land,310221.8359,NA
+Albert,weekend,open,1775.3326,334.6899584,0.005722784,16.26459447,Reserve Area,Non-Managed Land,310221.8359,NA
+Andrusyshyn,weekday,closed,346.9744493,139.8379437,0.004621733,54.61930385,Reserve Area,Non-Managed Land,75074.53034,NA
+Andrusyshyn,weekday,open,49.98995132,16.46343446,0.000665871,54.61930385,Reserve Area,Non-Managed Land,75074.53034,NA
+Andrusyshyn,weekend,closed,800.1911985,224.0570524,0.010658624,54.61930385,Reserve Area,Non-Managed Land,75074.53034,NA
+Andrusyshyn,weekend,open,2314.148226,182.763457,0.030824678,54.61930385,Reserve Area,Non-Managed Land,75074.53034,NA
+Bronte Gorge,weekday,closed,1022.442719,73.89369841,0.003346339,25.71612381,Natural Area,Non-Managed Land,305540.7194,NA
+Bronte Gorge,weekday,open,1331.303708,159.3252254,0.004357206,25.71612381,Natural Area,Non-Managed Land,305540.7194,NA
+Bronte Gorge,weekend,closed,76.76259619,0,0.000251235,25.71612381,Natural Area,Non-Managed Land,305540.7194,NA
+Bronte Gorge,weekend,open,2966.407616,272.1077564,0.009708715,25.71612381,Natural Area,Non-Managed Land,305540.7194,NA
+Burlington Beach,weekday,closed,148.4206746,23.34574098,0.001684158,6.576603115,Conservation Area,Non-Managed Land,88127.51501,NA
+Burlington Beach,weekday,open,755.4798386,44.79796593,0.008572576,6.576603115,Conservation Area,Non-Managed Land,88127.51501,NA
+Burlington Beach,weekend,closed,629.5926984,103.3562546,0.00714411,6.576603115,Conservation Area,Non-Managed Land,88127.51501,NA
+Burlington Beach,weekend,open,1242.327086,100.4182647,0.014096926,6.576603115,Conservation Area,Non-Managed Land,88127.51501,NA
+Campbellville,weekday,closed,14.74508396,0,0.001141568,8.154058794,Conservation Area,Non-Managed Land,12916.51569,NA
+Campbellville,weekday,open,18.95796509,6.84593184,0.001467731,8.154058794,Conservation Area,Non-Managed Land,12916.51569,NA
+Campbellville,weekend,closed,0,0,0,8.154058794,Conservation Area,Non-Managed Land,12916.51569,NA
+Campbellville,weekend,open,78.99152123,39.49576061,0.006115544,8.154058794,Conservation Area,Non-Managed Land,12916.51569,NA
+Carlisle,weekday,closed,1288.778083,87.43852517,0.004641957,44.76002525,Conservation Area,Non-Managed Land,277636.79,NA
+Carlisle,weekday,open,6238.867152,577.3078183,0.022471327,44.76002525,Conservation Area,Non-Managed Land,277636.79,NA
+Carlisle,weekend,closed,1524.724457,396.5117996,0.005491795,44.76002525,Conservation Area,Non-Managed Land,277636.79,NA
+Carlisle,weekend,open,6624.383865,666.4957307,0.023859892,44.76002525,Conservation Area,Non-Managed Land,277636.79,NA
+Clappison Woods,weekday,closed,41137.28085,4781.509261,0.048105617,96.14746595,Conservation Area,Non-Managed Land,855145.0685,NA
+Clappison Woods,weekday,open,102461.4464,3993.236414,0.119817619,96.14746595,Conservation Area,Non-Managed Land,855145.0685,NA
+Clappison Woods,weekend,closed,24140.91343,4301.351127,0.028230197,96.14746595,Conservation Area,Non-Managed Land,855145.0685,NA
+Clappison Woods,weekend,open,240043.018,7405.414435,0.28070444,96.14746595,Conservation Area,Non-Managed Land,855145.0685,NA
+Cockshutt,weekday,closed,31.19172194,15.59586097,0.007286296,28.02421541,Other,Non-Managed Land,4280.874934,NA
+Cockshutt,weekday,open,5.998408065,0,0.001401211,28.02421541,Other,Non-Managed Land,4280.874934,NA
+Cockshutt,weekend,open,0,0,0,28.02421541,Other,Non-Managed Land,4280.874934,NA
+Crawford Lake,weekday,closed,35873.53306,6558.031164,0.010152193,64.05910031,Conservation Area,Managed Land,3533574.917,65.3396337
+Crawford Lake,weekday,open,152360.3421,5261.987866,0.043117903,64.05910031,Conservation Area,Managed Land,3533574.917,65.3396337
+Crawford Lake,weekend,closed,73043.80189,13016.85176,0.020671361,64.05910031,Conservation Area,Managed Land,3533574.917,65.3396337
+Crawford Lake,weekend,open,312875.7999,8055.715125,0.088543701,64.05910031,Conservation Area,Managed Land,3533574.917,65.3396337
+Croft,weekday,closed,482.8721551,88.71600974,0.001406689,9.851722282,Reserve Area,Non-Managed Land,343268.5745,NA
+Croft,weekday,open,760.6583363,136.9730582,0.002215928,9.851722282,Reserve Area,Non-Managed Land,343268.5745,NA
+Croft,weekend,open,3628.929914,397.9685252,0.010571693,9.851722282,Reserve Area,Non-Managed Land,343268.5745,NA
+Escarpment,weekday,closed,1003.723943,95.34468469,0.003285577,60.9862309,Natural Area,Non-Managed Land,305493.957,NA
+Escarpment,weekday,open,3872.039219,363.7578525,0.012674684,60.9862309,Natural Area,Non-Managed Land,305493.957,NA
+Escarpment,weekend,closed,1718.113813,317.4277557,0.005624052,60.9862309,Natural Area,Non-Managed Land,305493.957,NA
+Escarpment,weekend,open,17621.36323,1120.275777,0.057681544,60.9862309,Natural Area,Non-Managed Land,305493.957,NA
+Esquesing,weekday,closed,2372.811342,101.6063187,0.0155787,39.20295996,Natural Area,Non-Managed Land,152311.2521,NA
+Esquesing,weekday,open,2825.974896,182.5422438,0.018553947,39.20295996,Natural Area,Non-Managed Land,152311.2521,NA
+Esquesing,weekend,closed,2458.458387,458.5608244,0.016141016,39.20295996,Natural Area,Non-Managed Land,152311.2521,NA
+Esquesing,weekend,open,2484.85176,477.7441906,0.016314302,39.20295996,Natural Area,Non-Managed Land,152311.2521,NA
+Forest Creek Estates,weekday,closed,1104.776845,177.2688837,0.007175732,44.41566755,Natural Area,Non-Managed Land,153960.1549,NA
+Forest Creek Estates,weekday,open,1268.876391,108.1991149,0.008241589,44.41566755,Natural Area,Non-Managed Land,153960.1549,NA
+Forest Creek Estates,weekend,closed,137.4597863,55.91102365,0.000892827,44.41566755,Natural Area,Non-Managed Land,153960.1549,NA
+Forest Creek Estates,weekend,open,2063.898876,82.5125408,0.013405409,44.41566755,Natural Area,Non-Managed Land,153960.1549,NA
+Forster & Burt,weekday,closed,1824.379446,185.8737256,0.034180265,35.63951141,Other,Non-Managed Land,53375.22833,NA
+Forster & Burt,weekday,open,2854.211847,184.0420343,0.053474466,35.63951141,Other,Non-Managed Land,53375.22833,NA
+Forster & Burt,weekend,closed,1356.94843,295.693986,0.025422813,35.63951141,Other,Non-Managed Land,53375.22833,NA
+Forster & Burt,weekend,open,4132.822045,429.8653,0.07742959,35.63951141,Other,Non-Managed Land,53375.22833,NA
+Fuciarelli,weekday,closed,141.0686481,33.1905132,0.000234299,5.539528836,Reserve Area,Non-Managed Land,602087.5188,NA
+Fuciarelli,weekday,open,557.4969555,26.77369817,0.00092594,5.539528836,Reserve Area,Non-Managed Land,602087.5188,NA
+Fuciarelli,weekend,closed,2.168020039,0,3.60E-06,5.539528836,Reserve Area,Non-Managed Land,602087.5188,NA
+Fuciarelli,weekend,open,388.9708439,121.3275843,0.000646037,5.539528836,Reserve Area,Non-Managed Land,602087.5188,NA
+Glenorchy,weekday,closed,23544.64747,2114.297274,0.005820686,45.95817474,Conservation Area,Non-Managed Land,4044995.267,18.26327069
+Glenorchy,weekday,open,38038.74735,883.9456928,0.009403904,45.95817474,Conservation Area,Non-Managed Land,4044995.267,18.26327069
+Glenorchy,weekend,closed,17034.45377,1881.701248,0.004211242,45.95817474,Conservation Area,Non-Managed Land,4044995.267,18.26327069
+Glenorchy,weekend,open,40635.42497,2182.186209,0.010045852,45.95817474,Conservation Area,Non-Managed Land,4044995.267,18.26327069
+Grindstone Creek,weekday,closed,24030.58184,4235.183484,0.03766795,94.18684195,Natural Area,Non-Managed Land,637958.3097,NA
+Grindstone Creek,weekday,open,52302.63026,1918.853456,0.081984402,94.18684195,Natural Area,Non-Managed Land,637958.3097,NA
+Grindstone Creek,weekend,closed,12875.13262,1728.452361,0.020181777,94.18684195,Natural Area,Non-Managed Land,637958.3097,NA
+Grindstone Creek,weekend,open,100239.7631,3135.997162,0.157125884,94.18684195,Natural Area,Non-Managed Land,637958.3097,NA
+Guelph Junction,weekday,closed,1167.661419,239.8240598,0.00414037,40.67677145,Reserve Area,Non-Managed Land,282018.6097,NA
+Guelph Junction,weekday,open,2417.684722,237.8364089,0.008572784,40.67677145,Reserve Area,Non-Managed Land,282018.6097,NA
+Guelph Junction,weekend,closed,894.2562923,447.1281461,0.003170912,40.67677145,Reserve Area,Non-Managed Land,282018.6097,NA
+Guelph Junction,weekend,open,3867.593499,764.1988494,0.013713966,40.67677145,Reserve Area,Non-Managed Land,282018.6097,NA
+Hager Rambo,weekday,closed,374.6293343,35.71962614,0.003479112,4.485349672,Other,Non-Managed Land,107679.5867,NA
+Hager Rambo,weekday,open,801.757824,63.63470255,0.007445774,4.485349672,Other,Non-Managed Land,107679.5867,NA
+Hager Rambo,weekend,closed,93.3925387,4.982054623,0.000867319,4.485349672,Other,Non-Managed Land,107679.5867,NA
+Hager Rambo,weekend,open,1616.157744,167.211798,0.015008952,4.485349672,Other,Non-Managed Land,107679.5867,NA
+Hilton Falls,weekday,closed,143513.2589,22914.17641,0.021893819,64.26158407,Conservation Area,Managed Land,6554966.979,78.59435411
+Hilton Falls,weekday,open,388097.8392,10159.37888,0.059206681,64.26158407,Conservation Area,Managed Land,6554966.979,78.59435411
+Hilton Falls,weekend,closed,145468.7052,19458.27309,0.022192134,64.26158407,Conservation Area,Managed Land,6554966.979,78.59435411
+Hilton Falls,weekend,open,802427.389,19177.21409,0.122415169,64.26158407,Conservation Area,Managed Land,6554966.979,78.59435411
+Kassam,weekday,closed,496.8813459,131.3517537,0.00298897,46.99404139,Reserve Area,Non-Managed Land,166238.3098,NA
+Kassam,weekday,open,289.3365097,58.70951421,0.001740492,46.99404139,Reserve Area,Non-Managed Land,166238.3098,NA
+Kassam,weekend,closed,183.9898332,0,0.001106784,46.99404139,Reserve Area,Non-Managed Land,166238.3098,NA
+Kassam,weekend,open,3044.978255,319.361448,0.018316947,46.99404139,Reserve Area,Non-Managed Land,166238.3098,NA
+Kelso,weekday,closed,302790.08,43124.74717,0.065883165,72.41079365,Conservation Area,Managed Land,4595864.232,72.90024964
+Kelso,weekday,open,524739.2146,18626.44861,0.114176396,72.41079365,Conservation Area,Managed Land,4595864.232,72.90024964
+Kelso,weekend,closed,246127.69,34980.44104,0.053554169,72.41079365,Conservation Area,Managed Land,4595864.232,72.90024964
+Kelso,weekend,open,1482928.581,62434.50155,0.322665881,72.41079365,Conservation Area,Managed Land,4595864.232,72.90024964
+Kerncliff,weekday,closed,11202.77055,1920.466199,0.030013934,70.77753598,Conservation Area,Non-Managed Land,373252.3268,NA
+Kerncliff,weekday,open,26557.07997,702.2916122,0.071150474,70.77753598,Conservation Area,Non-Managed Land,373252.3268,NA
+Kerncliff,weekend,closed,11582.9985,1940.366535,0.031032622,70.77753598,Conservation Area,Non-Managed Land,373252.3268,NA
+Kerncliff,weekend,open,36134.74403,1897.186467,0.096810499,70.77753598,Conservation Area,Non-Managed Land,373252.3268,NA
+Kilbride,weekday,closed,4070.738756,484.8401832,0.003225007,27.73318394,Natural Area,Non-Managed Land,1262241.866,0.523073077
+Kilbride,weekday,open,10891.47458,501.1235124,0.008628675,27.73318394,Natural Area,Non-Managed Land,1262241.866,0.523073077
+Kilbride,weekend,closed,3131.385626,403.3336721,0.002480813,27.73318394,Natural Area,Non-Managed Land,1262241.866,0.523073077
+Kilbride,weekend,open,14588.44315,461.1714927,0.011557566,27.73318394,Natural Area,Non-Managed Land,1262241.866,0.523073077
+Kiwanis,weekday,closed,397.547136,195.5450079,0.000964448,29.30055994,Natural Area,Non-Managed Land,412201.8032,NA
+Kiwanis,weekday,open,759.5168962,187.7912722,0.001842585,29.30055994,Natural Area,Non-Managed Land,412201.8032,NA
+Kiwanis,weekend,open,2990.937797,491.6471981,0.007256004,29.30055994,Natural Area,Non-Managed Land,412201.8032,NA
+Knight,weekday,closed,48.07592555,0,0.000258879,4.962924967,Reserve Area,Non-Managed Land,185708.273,NA
+Knight,weekday,open,2.837791464,1.418895732,1.53E-05,4.962924967,Reserve Area,Non-Managed Land,185708.273,NA
+Knight,weekend,closed,51.08024636,0,0.000275056,4.962924967,Reserve Area,Non-Managed Land,185708.273,NA
+Knight,weekend,open,13.24302683,0,7.13E-05,4.962924967,Reserve Area,Non-Managed Land,185708.273,NA
+Lake Medad,weekday,closed,17.06216572,0.524334803,6.33E-05,27.99403963,Reserve Area,Non-Managed Land,269479.4134,NA
+Lake Medad,weekday,open,2127.307292,426.8970447,0.007894137,27.99403963,Reserve Area,Non-Managed Land,269479.4134,NA
+Lake Medad,weekend,open,1422.614861,233.3237587,0.005279123,27.99403963,Reserve Area,Non-Managed Land,269479.4134,NA
+Medad Valley,weekday,closed,37.96105372,10.95395414,0.00039527,54.45065593,Reserve Area,Non-Managed Land,96038.34821,NA
+Medad Valley,weekday,open,1141.027019,230.9702408,0.011880952,54.45065593,Reserve Area,Non-Managed Land,96038.34821,NA
+Medad Valley,weekend,open,1803.519875,286.654516,0.018779164,54.45065593,Reserve Area,Non-Managed Land,96038.34821,NA
+Middletown,weekday,open,46.56041022,23.28020511,0.002192124,11.85601167,Reserve Area,Non-Managed Land,21239.86572,NA
+Middletown,weekend,closed,0,0,0,11.85601167,Reserve Area,Non-Managed Land,21239.86572,NA
+Middletown,weekend,open,146.0303775,0,0.006875297,11.85601167,Reserve Area,Non-Managed Land,21239.86572,NA
+Milton,weekday,closed,189.7054361,41.07819135,0.003952081,37.31942514,Other,Non-Managed Land,48001.4021,NA
+Milton,weekday,open,1143.228757,65.74910819,0.02381657,37.31942514,Other,Non-Managed Land,48001.4021,NA
+Milton,weekend,closed,265.2890257,51.40799808,0.005526693,37.31942514,Other,Non-Managed Land,48001.4021,NA
+Milton,weekend,open,998.1944753,104.2754786,0.020795111,37.31942514,Other,Non-Managed Land,48001.4021,NA
+Moffat-Badenoch Swamp,weekday,closed,8364.284004,619.6088249,0.005210667,36.07680005,Natural Area,Non-Managed Land,1605223.231,NA
+Moffat-Badenoch Swamp,weekday,open,10724.83305,873.8606002,0.00668121,36.07680005,Natural Area,Non-Managed Land,1605223.231,NA
+Moffat-Badenoch Swamp,weekend,closed,2556.624461,218.1655799,0.001592691,36.07680005,Natural Area,Non-Managed Land,1605223.231,NA
+Moffat-Badenoch Swamp,weekend,open,28367.94073,944.718943,0.017672271,36.07680005,Natural Area,Non-Managed Land,1605223.231,NA
+Morrison-Wedgewood,weekday,closed,1044.285144,111.2902944,0.004716491,22.60647689,Other,Non-Managed Land,221411.4639,NA
+Morrison-Wedgewood,weekday,open,7699.868829,326.2693173,0.034776288,22.60647689,Other,Non-Managed Land,221411.4639,NA
+Morrison-Wedgewood,weekend,closed,1885.562545,463.7794903,0.008516102,22.60647689,Other,Non-Managed Land,221411.4639,NA
+Morrison-Wedgewood,weekend,open,6553.609011,680.9306435,0.029599231,22.60647689,Other,Non-Managed Land,221411.4639,NA
+Morriston,weekday,closed,0.077734401,0,1.02E-05,10.16548848,Other,Non-Managed Land,7637.533156,NA
+Morriston,weekday,open,0,0,0,10.16548848,Other,Non-Managed Land,7637.533156,NA
+Morriston,weekend,open,41.40049064,0,0.005420663,10.16548848,Other,Non-Managed Land,7637.533156,NA
+Mount Nemo,weekday,closed,28018.44912,2245.273625,0.013727048,58.76924728,Conservation Area,Managed Land,2041112.444,26.84625609
+Mount Nemo,weekday,open,79085.10708,2243.41978,0.03874608,58.76924728,Conservation Area,Managed Land,2041112.444,26.84625609
+Mount Nemo,weekend,closed,42230.09524,6833.380433,0.020689745,58.76924728,Conservation Area,Managed Land,2041112.444,26.84625609
+Mount Nemo,weekend,open,206015.4928,5739.423847,0.100932946,58.76924728,Conservation Area,Managed Land,2041112.444,26.84625609
+Mountsberg,weekday,closed,13870.79072,1314.990262,0.002491396,43.77118979,Conservation Area,Managed Land,5567478.305,62.07324196
+Mountsberg,weekday,open,50826.73627,2703.044871,0.00912922,43.77118979,Conservation Area,Managed Land,5567478.305,62.07324196
+Mountsberg,weekend,closed,21897.96588,3392.074562,0.003933193,43.77118979,Conservation Area,Managed Land,5567478.305,62.07324196
+Mountsberg,weekend,open,136202.7581,10474.36901,0.024463994,43.77118979,Conservation Area,Managed Land,5567478.305,62.07324196
+Nelson Escarpment Woods,weekday,closed,331.992501,0,0.006230156,40.86211543,Natural Area,Non-Managed Land,53287.98822,NA
+Nelson Escarpment Woods,weekday,open,395.8618134,56.94443683,0.007428725,40.86211543,Natural Area,Non-Managed Land,53287.98822,NA
+Nelson Escarpment Woods,weekend,closed,553.0036865,93.32821032,0.010377642,40.86211543,Natural Area,Non-Managed Land,53287.98822,NA
+Nelson Escarpment Woods,weekend,open,520.1152938,82.10565189,0.00976046,40.86211543,Natural Area,Non-Managed Land,53287.98822,NA
+Ontario Heritage Trust,weekday,closed,820.9857656,130.0914429,0.000938268,28.12141785,Natural Area,Non-Managed Land,875000.9268,4.722474635
+Ontario Heritage Trust,weekday,open,6683.626853,542.2392696,0.007638423,28.12141785,Natural Area,Non-Managed Land,875000.9268,4.722474635
+Ontario Heritage Trust,weekend,closed,2325.96748,477.2624676,0.002658246,28.12141785,Natural Area,Non-Managed Land,875000.9268,4.722474635
+Ontario Heritage Trust,weekend,open,7035.397186,646.6383218,0.008040445,28.12141785,Natural Area,Non-Managed Land,875000.9268,4.722474635
+Paiement,weekday,open,283.8966583,58.2871407,0.002457277,33.76082121,Reserve Area,Non-Managed Land,115533.0503,NA
+Paiement,weekend,open,231.4562855,5.042609323,0.002003377,33.76082121,Reserve Area,Non-Managed Land,115533.0503,NA
+Plaikner,weekday,closed,310.0288969,0,0.001386265,16.13249247,Reserve Area,Non-Managed Land,223643.2599,NA
+Plaikner,weekday,open,656.7554489,131.6288208,0.002936621,16.13249247,Reserve Area,Non-Managed Land,223643.2599,NA
+Pleasantview,weekday,closed,9671.860156,727.3916041,0.016926255,65.61521365,Natural Area,Non-Managed Land,571411.6938,NA
+Pleasantview,weekday,open,12222.65344,382.4007162,0.021390275,65.61521365,Natural Area,Non-Managed Land,571411.6938,NA
+Pleasantview,weekend,closed,6517.118598,1284.229801,0.011405294,65.61521365,Natural Area,Non-Managed Land,571411.6938,NA
+Pleasantview,weekend,open,17409.58899,931.5431217,0.030467681,65.61521365,Natural Area,Non-Managed Land,571411.6938,NA
+Queen Elizabeth,weekday,closed,112.3520258,39.09155535,0.002745007,2.829904128,Other,Non-Managed Land,40929.5953,NA
+Queen Elizabeth,weekday,open,323.1568576,28.95670767,0.007895433,2.829904128,Other,Non-Managed Land,40929.5953,NA
+Queen Elizabeth,weekend,closed,152.8914165,58.49254949,0.003735473,2.829904128,Other,Non-Managed Land,40929.5953,NA
+Queen Elizabeth,weekend,open,320.840321,41.69765904,0.007838834,2.829904128,Other,Non-Managed Land,40929.5953,NA
+Rattlesnake Point,weekday,closed,40238.98942,5038.218979,0.012836052,51.15479994,Conservation Area,Managed Land,3134841.547,58.94664971
+Rattlesnake Point,weekday,open,119328.5943,3015.519546,0.038065271,51.15479994,Conservation Area,Managed Land,3134841.547,58.94664971
+Rattlesnake Point,weekend,closed,49665.63023,11304.71556,0.015843107,51.15479994,Conservation Area,Managed Land,3134841.547,58.94664971
+Rattlesnake Point,weekend,open,276789.9494,9332.456702,0.088294718,51.15479994,Conservation Area,Managed Land,3134841.547,58.94664971
+Robert Edmondson,weekday,closed,2137.820605,335.3233475,0.006905579,64.12128223,Conservation Area,Managed Land,309578.7711,52.75312908
+Robert Edmondson,weekday,open,7252.905462,659.3423699,0.023428304,64.12128223,Conservation Area,Managed Land,309578.7711,52.75312908
+Robert Edmondson,weekend,closed,546.5152011,208.0020542,0.001765351,64.12128223,Conservation Area,Managed Land,309578.7711,52.75312908
+Robert Edmondson,weekend,open,8627.574428,572.9032692,0.027868753,64.12128223,Conservation Area,Managed Land,309578.7711,52.75312908
+Roberts Reed,weekday,closed,0,0,0,14.2242339,Reserve Area,Non-Managed Land,334411.2784,NA
+Roberts Reed,weekday,open,139.7260386,36.21206416,0.000417827,14.2242339,Reserve Area,Non-Managed Land,334411.2784,NA
+Roberts Reed,weekend,open,625.373308,66.34963763,0.001870072,14.2242339,Reserve Area,Non-Managed Land,334411.2784,NA
+Scotch Block,weekday,closed,964.6983873,239.3434444,0.002903095,60.52847876,Other,Non-Managed Land,332299.9453,NA
+Scotch Block,weekday,open,4243.120906,381.1879188,0.012768949,60.52847876,Other,Non-Managed Land,332299.9453,NA
+Scotch Block,weekend,closed,1097.192228,298.4503651,0.003301813,60.52847876,Other,Non-Managed Land,332299.9453,NA
+Scotch Block,weekend,open,7390.077394,1077.761518,0.022239177,60.52847876,Other,Non-Managed Land,332299.9453,NA
+Shanahan,weekday,closed,2165.881462,206.6209757,0.003161225,34.74360091,Natural Area,Non-Managed Land,685139.9189,22.05444713
+Shanahan,weekday,open,2354.729824,203.0142587,0.00343686,34.74360091,Natural Area,Non-Managed Land,685139.9189,22.05444713
+Shanahan,weekend,closed,3389.562479,1307.699224,0.004947256,34.74360091,Natural Area,Non-Managed Land,685139.9189,22.05444713
+Shanahan,weekend,open,5465.277799,535.5567501,0.007976878,34.74360091,Natural Area,Non-Managed Land,685139.9189,22.05444713
+Sixteen Valley,weekday,closed,1526.735929,114.578323,0.004983863,42.25111573,Natural Area,Non-Managed Land,306335.8623,NA
+Sixteen Valley,weekday,open,5831.561272,307.7036263,0.019036496,42.25111573,Natural Area,Non-Managed Land,306335.8623,NA
+Sixteen Valley,weekend,closed,401.5255829,108.2705906,0.001310736,42.25111573,Natural Area,Non-Managed Land,306335.8623,NA
+Sixteen Valley,weekend,open,6017.895069,894.5128392,0.019644762,42.25111573,Natural Area,Non-Managed Land,306335.8623,NA
+Speyside,weekday,closed,727.1758632,155.4389161,0.002779105,37.64783198,Natural Area,Non-Managed Land,261658.2869,NA
+Speyside,weekday,open,4640.749073,295.2500493,0.017735915,37.64783198,Natural Area,Non-Managed Land,261658.2869,NA
+Speyside,weekend,closed,313.1956248,107.5582852,0.001196964,37.64783198,Natural Area,Non-Managed Land,261658.2869,NA
+Speyside,weekend,open,5728.546027,756.1651586,0.021893234,37.64783198,Natural Area,Non-Managed Land,261658.2869,NA
+Stewart,weekday,closed,8405.959246,1217.325157,0.040291827,48.70191104,Conservation Area,Non-Managed Land,208626.9051,NA
+Stewart,weekday,open,22210.05826,677.0768832,0.106458265,48.70191104,Conservation Area,Non-Managed Land,208626.9051,NA
+Stewart,weekend,closed,9447.598915,1249.068383,0.045284662,48.70191104,Conservation Area,Non-Managed Land,208626.9051,NA
+Stewart,weekend,open,28604.91697,1385.625277,0.137110393,48.70191104,Conservation Area,Non-Managed Land,208626.9051,NA
+Tirion,weekday,closed,110.3556847,53.94618517,0.000547949,45.78920694,Natural Area,Non-Managed Land,201397.5975,NA
+Tirion,weekday,open,877.6320159,148.5033452,0.004357708,45.78920694,Natural Area,Non-Managed Land,201397.5975,NA
+Tirion,weekend,open,7050.552214,496.324147,0.035008125,45.78920694,Natural Area,Non-Managed Land,201397.5975,NA
+Waterdown Woods,weekday,closed,18145.33974,2447.325961,0.01510323,65.7448215,Conservation Area,Non-Managed Land,1201421.164,NA
+Waterdown Woods,weekday,open,37030.56143,1595.234325,0.030822298,65.7448215,Conservation Area,Non-Managed Land,1201421.164,NA
+Waterdown Woods,weekend,closed,15487.1632,1874.078965,0.012890703,65.7448215,Conservation Area,Non-Managed Land,1201421.164,NA
+Waterdown Woods,weekend,open,67481.10546,5438.817269,0.056167735,65.7448215,Conservation Area,Non-Managed Land,1201421.164,NA
+Wildflower Woods,weekday,closed,167.0815071,40.69674411,0.001720137,55.57367985,Natural Area,Non-Managed Land,97132.66761,NA
+Wildflower Woods,weekday,open,2526.435264,153.6207934,0.02601015,55.57367985,Natural Area,Non-Managed Land,97132.66761,NA
+Wildflower Woods,weekend,closed,278.5931766,139.2965883,0.002868172,55.57367985,Natural Area,Non-Managed Land,97132.66761,NA
+Wildflower Woods,weekend,open,1955.995897,351.7570206,0.020137364,55.57367985,Natural Area,Non-Managed Land,97132.66761,NA
