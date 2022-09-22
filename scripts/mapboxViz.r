@@ -115,11 +115,11 @@ lm2Out <- effects::effect("trailDensity", m2,
 
 plot3 <- ggplot(mapboxTrails %>% filter(accessibility == "open") %>% filter(Name != "Robert Edmondson"),
     aes(x = trailDensity, y = activityDensityLog, color = dayOfWeek, group = Name)) +
-  geom_line(color = "grey50", lty = 2) +
+  geom_line(color = "black", lty = 2) +
 geom_point(size = 4) + 
 scale_color_manual(values=c("#E69F00", "#56B4E9")) + theme_classic() +
 xlab("Trail Density (km/km2)") +
- ylab("Average Mobile Activity (log-transformed)") +
+ ylab("Activity Density") +
  xlim(0.5,4.5) +
  theme(text = element_text(size = 16), legend.position = c(0.15, 0.9)) +
  geom_line(data=  lm2Out, aes(x  = trailDensity, y= fit, group = NA), color = "grey60", size=1.2) 
@@ -140,11 +140,11 @@ lm3Out <- effects::effect("trailDensity", m3,
 
 
 plot4 <- ggplot(ProportionActivityData,
-    aes(x = trailDensity, y = humanMobileProp*100,  label = Name)) +
-geom_text() +   theme(text = element_text(size = 16))  +
+    aes(x = trailDensity, y = humanMobileProp*100)) +
+geom_point(size = 4) +   theme(text = element_text(size = 16))  +
  theme_classic() +
 xlab("Trail Density (km/km2)") +
- ylab("Percent area with any human activity") +
+ ylab("Activity Coverage (%)") +
  xlim(0,8) + ylim(20,100) +
  theme(text = element_text(size = 16)) +
  geom_line(data=  lm3Out ,aes(x  = trailDensity, y= fit*100, label = NA), color = "grey60", size=1.2) 
@@ -186,10 +186,10 @@ summary(m4)
 plot5 <- ggplot(mapbox, aes(x=TrailActivityPercent, y = HumanMobilePercent, label = Name)) + 
  theme_classic() +ylim(20,100) + xlim(-10,80) + 
 xlab("Percent of activity directly on trails") + 
-ylab("Percent area with any human activity") +  
+ylab("Activity Coverage (%)") +  
  theme(text = element_text(size = 16)) +
  geom_smooth(method = "lm", color="grey60", se=F, size=1.2,fullrange=TRUE) +
- geom_text()
+ geom_point(size = 4)
 plot5
 
 ggsave("figs//Figure3Trails.pdf", arrangeGrob(plot3, plot4, plot5, ncol=3), width=16, height=5.5)
