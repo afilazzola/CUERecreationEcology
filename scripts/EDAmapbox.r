@@ -66,6 +66,11 @@ MapboxtimingRemoved <- Mapboxtiming %>%
 ggplot(MapboxtimingRemoved, aes(x = reorder(Name, activity_index_total), y = activity_index_total, fill = OvernightFilter)) + 
   geom_boxplot() + coord_flip() + xlab("") + ylab("Mapbox Activity Index")
 
+ggplot(MapboxtimingRemoved, aes(x = round(activity_index_total,4), fill= OvernightFilter)) + 
+  geom_density(alpha = 0.5) + scale_x_log10() + scale_fill_manual(values=c("#E69F00", "#56B4E9")) +
+  theme_classic() + theme(text = element_text(size = 16)) + xlab("Mapbox Activity Index") +
+  
+'MapboxtimingRemoved %>%  group_by(OvernightFilter) %>% summarize(nObs = length(activity_index_total), avgPattern = mean(activity_index_total))'
 # st_write(MapboxtimingAdjusted, dsn="data//Mapbox", layer="MapboxAdjustedActivity", driver="ESRI Shapefile", append = F)
 
 

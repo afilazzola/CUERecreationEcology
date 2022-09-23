@@ -51,7 +51,7 @@ siteSummaries <- mapbox %>%
     ungroup() %>% 
     filter(!is.na((weekend))) %>% 
     mutate(meanActivity = (weekday + weekend)/2, 
-        dailyVariation = log(exp(weekend)/exp(weekday)))
+        dailyVariation = (weekend)/weekday)
 
 
 treeTransformedMapbox <- treeSiteAverages %>% 
@@ -62,10 +62,13 @@ row.names(treeTransformed) <- paste0(
     abbreviate(treeTransformedMapbox$PropertyName, 6),
     "-",
     treeTransformedMapbox$Year)
+NArows <- is.na(rowSums(treeTransformed))
 
-rda1 <- cca(treeTransformed,
-   Y = treeTransformedMapbox[,c("meanActivity","dailyVariation","PercentUsed")],
-    Z = as.factor(treeTransformedMapbox$Year), 
+
+
+rda1 <- cca(treeTransformed[!NArows,],
+   Y = treeTransformedMapbox[!NArows,c("meanActivity","dailyVariation","PercentUsed")],
+    Z = as.factor(treeTransformedMapbox[!NArows, "Year"]), 
     data = treeTransformedMapbox)
 
 plot(rda1)
@@ -73,6 +76,17 @@ anova(rda1)
 summary(rda1)
 RsquareAdj(rda1)
 pdf("save.pdf", useDingbats = F)
+
+adjustedSpeciesScores <- scores(rda1, display = "species")*2.3
+predScores <- scores(rda1, display = "bp")*5
+
+
+par(mar = c(4.5, 4.5, 0.5, 0.5)) 
+plot(rda1, type = "n", xlab = "CCA1 (48.1%)", ylab= "CCA2 (31.8%)", cex.axis = 1.3, cex.lab = 1.5)
+orditorp(rda1, display = "sites",  cex = 0.8, col = "darkblue")
+orditorp(adjustedSpeciesScores, display = "species",   cex = 0.8, col = "#EB9100", air = 0.7)
+orditorp(rda1, display = "sites",  cex = 0.8, col = "darkblue")
+text(predScores,   cex = 1.2, col = "black", label = rownames(predScores))
 
 
 ## Patterns in surveys
